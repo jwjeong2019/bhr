@@ -8,7 +8,7 @@ const LOGIN_USER_PW = '12345';
 // elements
 const elmId = document.getElementById('id');
 const elmPw = document.getElementById('pw');
-const elmSignin = document.getElementById('signin');
+// const elmSignin = document.getElementById('signin');
 
 // variables
 let id = '';
@@ -22,7 +22,7 @@ elmId.onchange = e => {
 elmPw.onchange = e => {
     pw = e.target.value;
 };
-elmSignin.onclick = onClickSignIn;
+// elmSignin.onclick = onClickSignIn;
 
 // functions
 function onClickSignIn(e) {

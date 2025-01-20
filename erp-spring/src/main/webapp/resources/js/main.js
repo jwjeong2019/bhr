@@ -35,7 +35,7 @@ init();
 function init() {
     elmLogout.addEventListener('click', logout);
     setLogo();
-    setGreet();
+    // setGreet();
     setDate();
     setSideMenu();
     setInterval(timer, 1000);
@@ -53,7 +53,7 @@ function move(e) {
     location.href = e.target.attributes['url'].value;
 }
 function setGreet() {
-    elmGreet.innerText = `${storage.user.name}님 반갑습니다.`;
+    // elmGreet.innerText = `${storage.user.name}님 반갑습니다.`;
 }
 function setDate() {
     const today = new Date();
