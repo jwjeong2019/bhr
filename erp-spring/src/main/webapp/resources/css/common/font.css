@@ -1,0 +1,16 @@
+/* sizes */
+.f-20 {
+    font-size: 20px;
+}
+.f-30 {
+    font-size: 30px;
+}
+.f-50 {
+    font-size: 50px;
+}
+/* font family */
+.ff {
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+}

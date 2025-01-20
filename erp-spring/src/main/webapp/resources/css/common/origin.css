@@ -1,0 +1,24 @@
+/* tags */
+body {
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.input > input {
+    width: 90%;
+    height: 30px;
+    /* border-radius: 10px; */
+    margin-top: 10px;
+    border: 0px;
+    border-bottom: 1px solid rgb(148, 148, 148);
+}
+dialog {
+    width: 400px;
+    padding: 35px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 10px 1px rgb(103, 103, 103);
+}
+dialog::backdrop {
+    background: rgb(0, 0, 0, 0.2);
+}

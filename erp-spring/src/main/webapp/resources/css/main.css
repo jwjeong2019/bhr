@@ -1,0 +1,111 @@
+/* flexible */
+.container {
+    display: flex;
+}
+.space {
+    justify-content: space-between;
+}
+.center {
+    align-items: center;
+}
+.f-col {
+    flex-direction: column;
+}
+/* sizes */
+.w-300 {
+    width: 300px;
+}
+.w-70p {
+    width: 70%;
+}
+.f-20 {
+    font-size: 20px;
+}
+.f-50 {
+    font-size: 50px;
+}
+/* align */
+.mg-l-30 {
+    margin-left: 30px;
+}
+.mg-v-25 {
+    margin: 25px 0;
+}
+.pd-30 {
+    padding: 30px;
+}
+/* display */
+.d-block {
+    display: block;
+}
+/* elements */
+.btn-primary {
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid rgb(88, 132, 255);
+    background-color: rgb(167, 190, 255);
+    font-size: medium;
+    font-weight: bolder;
+
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+.donut {
+    width: 150px;
+    height: 150px;
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    background: conic-gradient(rgb(249, 168, 168) 0% 72%, rgb(255, 209, 209) 72% 100%);
+    position: relative;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.donut::before {
+    width: 100px;
+    height: 100px;
+    /* border: 1px solid rgb(184, 128, 128); */
+    border-radius: 50%;
+    background: rgb(255, 227, 227);
+    content: attr(data-percent)'%';
+    color: rgb(202, 159, 159);
+    line-height: 100px;
+    position: absolute;
+    top: 17%; left: 17%;
+}
+.donut-primary {
+    background: conic-gradient(rgb(91, 91, 255) 0% 35%, rgb(190, 190, 255) 35% 100%);
+}
+.donut-primary::before {
+    background: rgb(217, 217, 255);
+    color: rgb(134, 134, 188);
+}
+.donut-success {
+    background: conic-gradient(rgb(111, 255, 111) 0% 35%, rgb(205, 255, 205) 35% 100%);
+}
+.donut-success::before {
+    background: rgb(224, 255, 224);
+    color: rgb(142, 180, 142);
+}
+.card {
+    /* border: 1px solid gray; */
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0px 0px 7px 1px rgb(172, 172, 172);
+}
+#logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+}
+.nav {
+    padding: 10px 20px;
+    box-shadow: 0px 15px 20px -10px rgb(197, 197, 197, 0.5);
+}
+/* tags */
+body {
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+}

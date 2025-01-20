@@ -1,0 +1,168 @@
+/* flexible */
+.container {
+    display: flex;
+}
+.space {
+    justify-content: space-between;
+}
+.center {
+    align-items: center;
+}
+.f-col {
+    flex-direction: column;
+}
+.end {
+    justify-content: end;
+}
+/* sizes */
+.w-300 {
+    width: 300px;
+}
+.w-70p {
+    width: 70%;
+}
+.w-90p {
+    width: 90%;
+}
+.f-20 {
+    font-size: 20px;
+}
+.f-30 {
+    font-size: 30px;
+}
+.f-50 {
+    font-size: 50px;
+}
+/* align */
+.mg-l-30 {
+    margin-left: 30px;
+}
+.mg-v-25 {
+    margin: 25px 0;
+}
+.pd-30 {
+    padding: 30px;
+}
+/* display */
+.d-block {
+    display: block;
+}
+/* elements */
+.btn {
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+.btn-primary {
+    /* height: 40px; */
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px -2px rgb(103, 103, 103);
+    background-color: rgb(219, 219, 219);
+    padding: 5px 20px;
+}
+.btn-success {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px -2px rgb(80, 146, 80);
+    background-color: rgb(221, 255, 221);
+    padding: 5px 20px;
+    /* color: white; */
+}
+.btn-danger {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px -2px rgb(255, 155, 155);
+    background-color: rgb(255, 210, 210);
+    padding: 5px 20px;
+    /* color: white; */
+}
+.btn-none {
+    border: none;
+    background: none;
+}
+.donut {
+    width: 150px;
+    height: 150px;
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    background: conic-gradient(rgb(249, 168, 168) 0% 72%, rgb(255, 209, 209) 72% 100%);
+    position: relative;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.donut::before {
+    width: 100px;
+    height: 100px;
+    /* border: 1px solid rgb(184, 128, 128); */
+    border-radius: 50%;
+    background: rgb(255, 227, 227);
+    content: attr(data-percent)'%';
+    color: rgb(202, 159, 159);
+    line-height: 100px;
+    position: absolute;
+    top: 17%; left: 17%;
+}
+.donut-primary {
+    background: conic-gradient(rgb(91, 91, 255) 0% 35%, rgb(190, 190, 255) 35% 100%);
+}
+.donut-primary::before {
+    background: rgb(217, 217, 255);
+    color: rgb(134, 134, 188);
+}
+.donut-success {
+    background: conic-gradient(rgb(111, 255, 111) 0% 35%, rgb(205, 255, 205) 35% 100%);
+}
+.donut-success::before {
+    background: rgb(224, 255, 224);
+    color: rgb(142, 180, 142);
+}
+.card {
+    /* border: 1px solid gray; */
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0px 0px 7px 1px rgb(172, 172, 172);
+}
+#logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+}
+.nav {
+    padding: 10px 20px;
+    box-shadow: 0px 15px 20px -10px rgb(197, 197, 197, 0.5);
+}
+.scroll-box {
+    height: 300px;
+    overflow-y: auto;
+    list-style: none;
+    padding-left: 0px;
+}
+.scroll-box > li:hover {
+    background: rgb(219, 219, 219);
+}
+/* tags */
+body {
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.input > input {
+    width: 90%;
+    height: 30px;
+    /* border-radius: 10px; */
+    margin-top: 10px;
+    border: 0px;
+    border-bottom: 1px solid rgb(148, 148, 148);
+}
+dialog {
+    width: 400px;
+    padding: 35px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 10px 1px rgb(103, 103, 103);
+}
+dialog::backdrop {
+    background: rgb(0, 0, 0, 0.2);
+}

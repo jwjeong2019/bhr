@@ -1,0 +1,316 @@
+/* elements */
+.btn {
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+.btn:active {
+    background: rgba(209, 209, 209, 0.3);
+}
+.btn-primary {
+    /* height: 40px; */
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px -2px rgb(103, 103, 103);
+    background-color: rgb(219, 219, 219);
+    padding: 5px 20px;
+}
+.btn-success {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px -2px rgb(80, 146, 80);
+    background-color: rgb(221, 255, 221);
+    padding: 5px 20px;
+    /* color: white; */
+}
+.btn-danger {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 10px -2px rgb(255, 155, 155);
+    background-color: rgb(255, 210, 210);
+    padding: 5px 20px;
+    /* color: white; */
+}
+.btn-none {
+    border: none;
+    background: none;
+}
+.donut {
+    width: 150px;
+    height: 150px;
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    background: conic-gradient(rgb(249, 168, 168) 0% 72%, rgb(255, 209, 209) 72% 100%);
+    position: relative;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.donut::before {
+    width: 100px;
+    height: 100px;
+    /* border: 1px solid rgb(184, 128, 128); */
+    border-radius: 50%;
+    background: rgb(255, 227, 227);
+    content: attr(data-percent)'%';
+    color: rgb(202, 159, 159);
+    line-height: 100px;
+    position: absolute;
+    top: 17%; left: 17%;
+}
+.donut-primary {
+    background: conic-gradient(rgb(91, 91, 255) 0% 35%, rgb(190, 190, 255) 35% 100%);
+}
+.donut-primary::before {
+    background: rgb(217, 217, 255);
+    color: rgb(134, 134, 188);
+}
+.donut-success {
+    background: conic-gradient(rgb(111, 255, 111) 0% 35%, rgb(205, 255, 205) 35% 100%);
+}
+.donut-success::before {
+    background: rgb(224, 255, 224);
+    color: rgb(142, 180, 142);
+}
+.card {
+    /* border: 1px solid gray; */
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0px 0px 7px 1px rgb(172, 172, 172);
+}
+#logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+}
+.nav {
+    padding: 10px 20px;
+    box-shadow: 0px 15px 20px -10px rgb(197, 197, 197, 0.5);
+}
+.scroll-box {
+    height: 250px;
+    overflow-y: auto;
+    list-style: none;
+    padding-left: 0px;
+}
+.scroll-box > li:hover {
+    background: rgb(219, 219, 219);
+}
+.scroll-box-left {
+    height: 250px;
+    overflow-y: auto;
+    list-style: none;
+    padding-left: 0px;
+}
+.scroll-box-left > li:hover {
+    background: rgb(219, 219, 219);
+}
+.scroll-box-right {
+    height: 250px;
+    overflow-y: auto;
+    list-style: none;
+    padding-left: 0px;
+}
+.scroll-box-right > li:hover {
+    background: rgb(219, 219, 219);
+}
+.shadow {
+    box-shadow: 0px 0px 15px -3px gray;
+}
+.table-input input {
+    border: none;
+    width: 170px;
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+.li-input input {
+    border: none;
+    width: 20%;
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+}
+.badge-orange {
+    background: rgb(255, 201, 102);
+    box-shadow: 0px 0px 7px 1px rgb(255, 176, 29);
+    border-radius: 15px;
+    padding: 2px 10px;
+}
+.badge-purple {
+    background: rgb(255, 176, 255);
+    box-shadow: 0px 0px 7px 1px rgb(255, 101, 255);
+    border-radius: 15px;
+    padding: 2px 10px;
+}
+.badge-green {
+    background: rgb(182, 255, 182);
+    box-shadow: 0px 0px 7px 1px rgb(85, 255, 85);
+    border-radius: 15px;
+    padding: 2px 10px;
+}
+.badge-blue {
+    background: rgb(190, 190, 255);
+    box-shadow: 0px 0px 7px 1px rgb(147, 147, 255);
+    border-radius: 15px;
+    padding: 2px 10px;
+}
+.badge-red {
+    background: rgb(255, 196, 196);
+    box-shadow: 0px 0px 7px 1px rgb(255, 158, 158);
+    border-radius: 15px;
+    padding: 2px 10px;
+}
+.b-none {
+    border: none;
+}
+.b-radius {
+    border-radius: 15px;
+}
+.b-solid {
+    border: 1px solid rgb(209, 209, 209);
+}
+.bg-primary {background: rgb(241, 241, 241);}
+.bg-white {background: white;}
+/* id */
+#tb-emp td {
+    width: 200px;
+}
+#scroll-box-mini {
+    height: 150px;
+    overflow-y: auto;
+    list-style: none;
+    padding-left: 0px;
+}
+#scroll-box-mini li:hover {
+    background: rgb(209, 209, 209);
+}
+#dropdown {
+    position: relative;
+}
+#dropdown-button {
+    box-shadow: 0px 0px 15px -2px gray;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+#dropdown-content {
+    display: none;
+    box-shadow: 0px 0px 15px -2px gray;
+    border-radius: 15px;
+    width: 150px;
+    list-style: none;
+    position: absolute;
+    background: white;
+    top: 50px;
+    padding: 10px 0;
+}
+#dropdown-content div {
+    padding: 10px 15px;
+}
+#dropdown-content div:hover {
+    background: rgb(209, 209, 209);
+}
+#search-input {
+    margin: 0px 15px;
+}
+#search-input input {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px -2px gray;
+    padding: 10px 15px;
+
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+}
+#search-btn button {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px -2px rgb(150, 150, 150);
+    padding: 10px 15px;
+    background: rgb(209, 209, 209);
+
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+}
+#checkbox {
+    width: 20px;
+    height: 20px;
+}
+#payroll-dialog-content {
+    /* height: 300px;
+    overflow-y: auto; */
+}
+#payroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+#payroll-table tr, #payroll-table td {
+    border: 1px solid gray;
+}
+#payroll-table tr:nth-of-type(3),
+#payroll-table tr:nth-of-type(10),
+#payroll-table tr:nth-of-type(17) {
+    background: rgb(209, 209, 209);
+}
+#payroll-table tr:nth-of-type(1) td:nth-of-type(odd),
+#payroll-table tr:nth-of-type(2) td:nth-of-type(odd) {
+    background: rgb(209, 209, 209);
+}
+#payroll-table tr:nth-of-type(3) {
+    border-top: 3px double black;
+}
+#btn-all {
+    border: none;
+    border-radius: 15px;
+    padding: 3px 10px;
+}
+#btn-all:active {
+    background: rgba(209, 209, 209, 0.7);
+}
+#attendance-apply-form-content table {
+    width: 100%;
+}
+#attendance-apply-form-content table tr {
+    /* height: 50px; */
+}
+#attendance-apply-form-content table tr:nth-of-type(even) td {
+    font-size: 20px;
+}
+#attendance-apply-card-day input {
+    border: none;
+    width: 15%;
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+#attendance-apply-card-day label {
+    font-size: 20px;
+}
+#attendance-apply-card-date input {
+    border: none;
+    width: 90%;
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+#attendance-apply-card-detail input {
+    border: none;
+    width: 80%;
+    font-family: "Gowun Dodum", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
