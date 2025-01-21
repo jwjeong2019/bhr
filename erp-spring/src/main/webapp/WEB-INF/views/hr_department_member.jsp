@@ -1,6 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String path = request.getContextPath(); %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.erp.dto.CriterionDto" %>
+<%@ page import="com.erp.dto.DepartmentDto" %>
+<%@ page import="com.erp.dto.EmployeeDto" %>
+<%
+	String path = request.getContextPath();
+	String name = (String) session.getAttribute("name");
+	List<DepartmentDto> listDep = (ArrayList) request.getAttribute("listDep");
+	List<EmployeeDto> listEmp = (ArrayList) request.getAttribute("listEmp");
+	List<EmployeeDto> listMem = (ArrayList) request.getAttribute("listMem");
+	String msg = (String) request.getAttribute("msg");
+%>
+<%!
+	public static final String JSON_CRITERION = "{'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}";
+	public static final String JSON_DEPARTMENT = "{'id': '%s', 'criterion': %s}";
+	public static final String JSON_EMPLOYEE = "{'id': '%s', 'code': '%s', 'name': '%s', 'position': '%s', 'department': %s}";
+	public String convertToJson(CriterionDto c) {
+		return String.format(JSON_CRITERION, 
+				c.getCode(), c.getType(), c.getStatus(), c.getName());
+	}
+	public String convertToJson(DepartmentDto d) {
+		CriterionDto c = d.getCriterion();
+		return String.format(JSON_DEPARTMENT,
+				d.getId(), 
+				String.format(JSON_CRITERION,
+						c.getCode(), c.getType(), c.getStatus(), c.getName()));
+	}
+	public String convertToJson(EmployeeDto e) {
+		DepartmentDto d = e.getDepartment();
+		if (d == null) {
+			return String.format(JSON_EMPLOYEE,
+					e.getId(), e.getCode(), e.getName(), e.getPosition(),
+					null);
+		}
+		CriterionDto c = d.getCriterion();
+		return String.format(JSON_EMPLOYEE,
+				e.getId(), e.getCode(), e.getName(), e.getPosition(),
+				String.format(JSON_DEPARTMENT,
+						d.getId(),
+						String.format(JSON_CRITERION,
+								c.getCode(), c.getType(), c.getStatus(), c.getName())));
+	}
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,29 +57,27 @@
     @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Gowun+Dodum&family=Hi+Melody&display=swap');
     </style>
     <script type="module" src="<%=path%>/resources/js/scroll_box_couple.js"></script>
+    <script type="module" src="<%=path%>/resources/js/component/side_menu.js"></script>
 </head>
 <body>
-    <header class="nav">
+    <header class="nav pos-fixed top-0 left-0 w-100vw bg-white zi-1">
         <nav class="container space">
-            <img id="logo" src="https://img.freepik.com/premium-vector/erp-vector-icon-web_116137-3113.jpg?w=740">
-            <div class="container w-300 space center">
-                <div>admin님 반갑습니다.</div>
-                <button class="btn btn-primary">로그아웃</button>
+            <form action="main.do" method="get">
+            	<button class="b-none bg-none pd-0">
+		            <img id="logo" url="/html/main.html" src="https://img.freepik.com/premium-vector/erp-vector-icon-web_116137-3113.jpg?w=740">
+            	</button>
+            </form>
+            <div class="container w-25vw space center mg-r-70">
+                <div class="f-20" id="greet">${name}님 반갑습니다.</div>
+                <form action="logoutAction.do" method="post">
+	                <button id="logout" class="btn btn-primary" type="submit">로그아웃</button>
+                </form>
             </div>
         </nav>
     </header>
-    <section class="container space pd-30">
-        <aside>
-            <h2>기준관리</h2>
-            <h3>부서 기준 관리</h3>
-            <h3>근태 기준 관리</h3>
-            <h3>급여 기준 관리</h3>
-            <h2>인사관리</h2>
-            <h3>부서 관리</h3>
-            <h3>부서원 관리</h3>
-            <h3>사원 관리</h3>
-            <h2>근태관리</h2>
-            <h2>급여관리</h2>
+    <section class="container space pd-100-30">
+        <aside id="side-menu">
+            <!-- load side_menu.js -->
         </aside>
         <main class="mg-l-30 w-80p">
             <header>
@@ -51,28 +91,15 @@
                             <span class="w-30p">부서명</span>
                         </div>
                         <ul class="scroll-box">
-                            <li class="container space">
-                                <span class="f-20 w-30p">경영팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">인사팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">개발1팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">개발2팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">영업1팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">영업2팀</span>
-                            </li>
+                            <% for (int i = 0; i < listDep.size(); i++) { %>
+	                            <li class="container space" onclick="onClickDepItem(<%=convertToJson(listDep.get(i)) %>)">
+					                <span class="f-20 w-30p"><%=listDep.get(i).getCriterion().getName() %></span>
+					            </li>                            	
+                            <% } %>
                         </ul>
                     </div>
                     <div>
-                        <span class="f-30">👉 개발1팀</span>
+                        <span id="select-department" style="display: none;" class="f-30">👉 개발1팀</span>
                     </div>
                 </article>
                 <article class="card w-25p h-420">
@@ -84,25 +111,17 @@
                             <span class="w-25p">이름</span>
                         </div>
                         <ul class="scroll-box">
-                            <li class="container space">
-                                <span class="f-20 w-25p">H0001</span>
-                                <span class="f-20 w-30p">2024-03-10</span>
-                                <span class="f-20 w-25p">강빛찬</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-25p">H0002</span>
-                                <span class="f-20 w-30p">2024-03-13</span>
-                                <span class="f-20 w-25p">조아영</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-25p">H0003</span>
-                                <span class="f-20 w-30p">2024-03-21</span>
-                                <span class="f-20 w-25p">최 고</span>
-                            </li>
+                            <% for (int i = 0; i < listEmp.size(); i++) { %>
+	                            <li class="container space" onclick="onClickEmpItem(<%=convertToJson(listEmp.get(i)) %>)">
+					                <span class="f-20 w-30p"><%=listEmp.get(i).getCode() %></span>
+					                <span class="f-20 w-30p"><%=listEmp.get(i).getJoinDate() %></span>
+					                <span class="f-20 w-30p"><%=listEmp.get(i).getName() %></span>
+					            </li>                            	
+                            <% } %>
                         </ul>
                     </div>
                     <div>
-                        <span class="f-30">👉 조아영(H0002)</span>
+                        <span id="select-employee" style="display: none;" class="f-30">👉 조아영(H0002)</span>
                     </div>
                 </article>
                 <article class="card w-25p">
@@ -114,36 +133,18 @@
                             <span class="w-30p">사원이름</span>
                         </div>
                         <ul class="scroll-box">
-                            <li class="container space">
-                                <span class="f-20 w-30p">개발1팀</span>
-                                <span class="f-20 w-30p">H0004</span>
-                                <span class="f-20 w-30p">오문식</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">경영팀</span>
-                                <span class="f-20 w-30p">H0007</span>
-                                <span class="f-20 w-30p">김민국</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">경영팀</span>
-                                <span class="f-20 w-30p">H0006</span>
-                                <span class="f-20 w-30p">공진희</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">개발1팀</span>
-                                <span class="f-20 w-30p">H0005</span>
-                                <span class="f-20 w-30p">이신영</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">영업2팀</span>
-                                <span class="f-20 w-30p">H0008</span>
-                                <span class="f-20 w-30p">공진희</span>
-                            </li>
+                            <% for (int i = 0; i < listMem.size(); i++) { %>
+	                            <li class="container space" onclick="onClickMemItem(<%=convertToJson(listMem.get(i)) %>)">
+					                <span class="f-20 w-30p"><%=listMem.get(i).getDepartment().getCriterion().getName() %></span>
+					                <span class="f-20 w-30p"><%=listMem.get(i).getCode() %></span>
+					                <span class="f-20 w-30p"><%=listMem.get(i).getName() %></span>
+					            </li>                            	
+                            <% } %>
                         </ul>
                     </div>
                     <div class="container f-col">
-                        <button class="btn btn-danger mg-b-20">⬇️ 제거하기</button>
-                        <button class="btn btn-success">⬆️ 추가하기</button>
+                        <button id="btn-remove" class="btn btn-danger mg-b-20" style="display: none;" onclick="onClickRemove()">⬇️ 제거하기</button>
+                        <button id="btn-add" class="btn btn-success" style="display: none;" onclick="onClickAdd()">⬆️ 추가하기</button>
                     </div>
                 </article>
             </section>
@@ -163,5 +164,53 @@
             <button class="btn btn-primary">아니오</button>
         </div>
     </dialog>
+    <form id="form-update">
+    	<input id="upd-dep-id" name="depId" hidden>
+    	<input id="upd-emp-id" name="empId" hidden>
+    </form>
+    <form id="form-delete">
+    	<input id="del-emp-id" name="empId" hidden>
+    </form>
 </body>
+<script>
+	if ('${msg}' == 'already existing Department.') {
+		alert('${msg}');
+	}
+	const formUpd = document.getElementById('form-update');
+	const formDel = document.getElementById('form-delete');
+	const dialogIns = document.getElementById('dialog-insert');
+	const dialogDel = document.getElementById('dialog-delete');
+	
+	function onClickDepItem(item) {
+		console.log(item);
+		const sd = document.getElementById('select-department');
+		sd.innerText = '👉 ' + item.criterion.name;
+		sd.style.display = 'inline-block';
+		document.getElementById('upd-dep-id').value = item.id;
+	}
+	function onClickEmpItem(item) {
+		console.log(item);
+		const se = document.getElementById('select-employee');
+		se.innerText = '👉 ' + item.name + '(' + item.code + ')';
+		se.style.display = 'inline-block';
+		document.getElementById('btn-add').style.display = 'inline-block';
+		document.getElementById('upd-emp-id').value = item.id;
+	}
+	function onClickMemItem(item) {
+		console.log(item);
+		document.getElementById('btn-remove').style.display = 'inline-block';
+		document.getElementById('del-emp-id').value = item.id;
+	}
+	
+	function onClickAdd() {
+		formUpd.action = 'hrDepartmentMemberUpdate.do';
+		formUpd.method = 'post';
+		formUpd.submit();
+	}
+	function onClickRemove() {
+		formDel.action = 'hrDepartmentMemberDelete.do';
+		formDel.method = 'post';
+		formDel.submit();
+	}
+</script>
 </html>
