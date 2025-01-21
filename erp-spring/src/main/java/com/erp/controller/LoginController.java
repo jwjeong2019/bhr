@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,6 +28,7 @@ public class LoginController {
 		if (reqFlashMap != null) {
 			// msg 파라미터를 받고 login.jsp로 전달
 			String paramMsg = (String) reqFlashMap.get("msg");
+			System.out.println("/login.do --> " + paramMsg);
 			model.addAttribute("msg", paramMsg);
 		}
 		return "login";
@@ -58,6 +60,18 @@ public class LoginController {
 		// flash 속성 파라미터 방출
 		// URL 파라미터 은닉
 		ra.addFlashAttribute("msg", "fail");
+		return "redirect:/login.do";
+	}
+	
+	@PostMapping("/logoutAction.do")
+	public String logoutAction(HttpServletRequest request, RedirectAttributes ra) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("id");
+		session.removeAttribute("email");
+		session.removeAttribute("name");
+		session.removeAttribute("role");
+		
+		ra.addFlashAttribute("msg", "logout");
 		return "redirect:/login.do";
 	}
 }
