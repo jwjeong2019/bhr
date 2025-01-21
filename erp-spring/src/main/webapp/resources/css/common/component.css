@@ -172,6 +172,7 @@
 .b-solid {
     border: 1px solid rgb(209, 209, 209);
 }
+.bg-none {background: none;}
 .bg-primary {background: rgb(241, 241, 241);}
 .bg-white {background: white;}
 /* id */
@@ -313,4 +314,7 @@
     font-weight: 400;
     font-style: normal;
     font-size: 20px;
+}
+#side-menu h3:hover {
+	cursor: pointer;
 }

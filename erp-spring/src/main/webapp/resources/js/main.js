@@ -16,9 +16,6 @@ function getStorage() {
 
 // ========== view ==========
 // elements
-const elmGreet = document.getElementById('greet');
-const elmLogout = document.getElementById('logout');
-const elmLogo = document.getElementById('logo');
 const elmYear = document.getElementById('year');
 const elmMonth = document.getElementById('month');
 const elmDate = document.getElementById('date');
@@ -33,27 +30,12 @@ init();
 
 // functions
 function init() {
-    elmLogout.addEventListener('click', logout);
-    setLogo();
-    // setGreet();
     setDate();
     setSideMenu();
     setInterval(timer, 1000);
 }
-function logout() {
-    alert('로그아웃 되었습니다.');
-    localStorage.clear();
-    location.href = '/html/login.html';
-    return;
-}
-function setLogo() {
-    elmLogo.addEventListener('click', move);
-}
 function move(e) {
     location.href = e.target.attributes['url'].value;
-}
-function setGreet() {
-    // elmGreet.innerText = `${storage.user.name}님 반갑습니다.`;
 }
 function setDate() {
     const today = new Date();
