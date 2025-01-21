@@ -318,3 +318,6 @@
 #side-menu h3:hover {
 	cursor: pointer;
 }
+#logo:hover, #logout:hover {
+	cursor: pointer;
+}
