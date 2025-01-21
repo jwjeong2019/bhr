@@ -2,15 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.erp.dto.CriterionDto" %>
+<%@ page import="com.erp.dto.DepartmentDto" %>
 <%
 	String path = request.getContextPath();
 	String name = (String) session.getAttribute("name");
-	List<CriterionDto> listArrN = (ArrayList) request.getAttribute("listArrN");
-	List<CriterionDto> listArrY = (ArrayList) request.getAttribute("listArrY");
+	List<CriterionDto> listCri = (ArrayList) request.getAttribute("listCri");
+	List<DepartmentDto> listDep = (ArrayList) request.getAttribute("listDep");
+	String msg = (String) request.getAttribute("msg");
 %>
 <%!
 	public String convertToJson(CriterionDto dto) {
-		return String.format("{'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}", dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
+		return String.format("{'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}", 
+				dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
+	}
+	public String convertToJson(DepartmentDto dto) {
+		CriterionDto c = dto.getCriterion();
+		return String.format("{'id': '%s', 'criterion': {'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}}"
+				, dto.getId(), c.getCode(), c.getType(), c.getStatus(), c.getName());
 	}
 %>
 <!DOCTYPE html>
@@ -63,11 +71,11 @@
                             <span class="w-30p">명칭</span>
                         </div>
                         <ul class="scroll-box-left">
-                            <% for (int i = 0; i < listArrN.size(); i++) { %>
-	                            <li class="container space" onclick="onClickAddItem(<%=convertToJson(listArrN.get(i)) %>)">
-					                <span class="f-20 w-30p"><%=listArrN.get(i).getCode() %></span>
-					                <span class="f-20 w-30p"><%=listArrN.get(i).getType() %></span>
-					                <span class="f-20 w-30p"><%=listArrN.get(i).getName() %></span>
+                            <% for (int i = 0; i < listCri.size(); i++) { %>
+	                            <li class="container space" onclick="onClickInsertItem(<%=convertToJson(listCri.get(i)) %>)">
+					                <span class="f-20 w-30p"><%=listCri.get(i).getCode() %></span>
+					                <span class="f-20 w-30p"><%=listCri.get(i).getType() %></span>
+					                <span class="f-20 w-30p"><%=listCri.get(i).getName() %></span>
 					            </li>                            	
                             <% } %>
                         </ul>
@@ -82,11 +90,11 @@
                             <span class="w-30p">명칭</span>
                         </div>
                         <ul class="scroll-box-right">
-                            <% for (int i = 0; i < listArrY.size(); i++) { %>
-	                            <li class="container space" onclick="onClickRemoveItem(<%=convertToJson(listArrY.get(i)) %>)">
-					                <span class="f-20 w-30p"><%=listArrY.get(i).getCode() %></span>
-					                <span class="f-20 w-30p"><%=listArrY.get(i).getType() %></span>
-					                <span class="f-20 w-30p"><%=listArrY.get(i).getName() %></span>
+                            <% for (int i = 0; i < listDep.size(); i++) { %>
+	                            <li class="container space" onclick="onClickDeleteItem(<%=convertToJson(listDep.get(i)) %>)">
+					                <span class="f-20 w-30p"><%=listDep.get(i).getCriterion().getCode() %></span>
+					                <span class="f-20 w-30p"><%=listDep.get(i).getCriterion().getType() %></span>
+					                <span class="f-20 w-30p"><%=listDep.get(i).getCriterion().getName() %></span>
 					            </li>                            	
                             <% } %>
                         </ul>
@@ -95,56 +103,58 @@
             </section>
         </main>
     </section>
-    <form id="form-update">
-    	<input id="code" hidden name="code">
+    <form id="form-insert-delete">
+    	<input id="cri-code" hidden name="code">
+    	<input id="dep-id" hidden name="id">
     	<input id="arrangement" hidden name="arrangement">
-	    <dialog id="dialog-add" class="alert-insert">
+	    <dialog id="dialog-insert" class="alert-insert">
 	        <span class="f-30">부서를 추가하시겠습니까?</span>
 	        <div class="container mg-v-25 space w-70p">
-	            <button class="btn btn-success" onclick="onClickAddYes()">예</button>
-	            <button class="btn btn-primary" onclick="onClickAddNo()">아니오</button>
+	            <button class="btn btn-success" onclick="onClickInsertYes()">예</button>
+	            <button class="btn btn-primary" onclick="onClickInsertNo()">아니오</button>
 	        </div>
 	    </dialog>
-	    <dialog id="dialog-remove" class="alert-delete">
+	    <dialog id="dialog-delete" class="alert-delete">
 	        <span class="f-30">부서를 제거하시겠습니까?</span>
 	        <div class="container mg-v-25 space w-70p">
-	            <button class="btn btn-success" onclick="onClickRemoveYes()">예</button>
-	            <button class="btn btn-primary" onclick="onClickRemoveNo()">아니오</button>
+	            <button class="btn btn-success" onclick="onClickDeleteYes()">예</button>
+	            <button class="btn btn-primary" onclick="onClickDeleteNo()">아니오</button>
 	        </div>
 	    </dialog>
     </form>
 </body>
 <script>
-	const formUpdate = document.getElementById('form-update');	
-	const dialogAdd = document.getElementById('dialog-add');
-	const dialogRem = document.getElementById('dialog-remove');
-	function onClickAddItem(item) {
+	if ('${msg}' == 'already existing Department.') {
+		alert('${msg}');
+	}
+	const formInsDel = document.getElementById('form-insert-delete');	
+	const dialogIns = document.getElementById('dialog-insert');
+	const dialogDel = document.getElementById('dialog-delete');
+	function onClickInsertItem(item) {
 		console.log(item);
-		dialogAdd.showModal();
-		document.getElementById('code').value = item.code;
-		document.getElementById('arrangement').value = 'Y';
+		dialogIns.showModal();
+		document.getElementById('cri-code').value = item.code;
 	}
-	function onClickAddYes() {
-		formUpdate.action = 'hrDepartmentUpdate.do';
-		formUpdate.method = 'post';
-		formUpdate.submit();
+	function onClickInsertYes() {
+		formInsDel.action = 'hrDepartmentInsert.do';
+		formInsDel.method = 'post';
+		formInsDel.submit();
 	}
-	function onClickAddNo() {
-		dialogAdd.close();
+	function onClickInsertNo() {
+		dialogIns.close();
 	}
-	function onClickRemoveItem(item) {
+	function onClickDeleteItem(item) {
 		console.log(item);
-		dialogRem.showModal();
-		document.getElementById('code').value = item.code;
-		document.getElementById('arrangement').value = 'N';
+		dialogDel.showModal();
+		document.getElementById('dep-id').value = item.id;
 	}
-	function onClickRemoveYes() {
-		formUpdate.action = 'hrDepartmentUpdate.do';
-		formUpdate.method = 'post';
-		formUpdate.submit();
+	function onClickDeleteYes() {
+		formInsDel.action = 'hrDepartmentDelete.do';
+		formInsDel.method = 'post';
+		formInsDel.submit();
 	}
-	function onClickRemoveNo() {
-		dialogRem.close();
+	function onClickDeleteNo() {
+		dialogDel.close();
 	}
 </script>
 </html>
