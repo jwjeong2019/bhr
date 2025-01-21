@@ -19,9 +19,9 @@ public class CriterionDepController {
 	public List<CriterionDto> list = new ArrayList<>();
 	
 	public CriterionDepController() {
-		list.add(new CriterionDto("A0001", "MANAGE", "Y", "경영팀"));
-		list.add(new CriterionDto("A0002", "HR", "Y", "인사팀"));
-		list.add(new CriterionDto("A0003", "R&D", "N", "연구팀"));
+		list.add(new CriterionDto("A0001", "MANAGE", "Y", "경영팀", "Y"));
+		list.add(new CriterionDto("A0002", "HR", "Y", "인사팀", "Y"));
+		list.add(new CriterionDto("A0003", "R&D", "N", "연구팀", "Y"));
 	}
 	
 	@RequestMapping("/criterionDepartment.do")
@@ -37,7 +37,7 @@ public class CriterionDepController {
 		String status = request.getParameter("status");
 		String name = request.getParameter("name");
 		
-		CriterionDto criterionDto = new CriterionDto(code, type, status, name);
+		CriterionDto criterionDto = new CriterionDto(code, type, status, name, "Y");
 		list.add(criterionDto);
 		
 		return "redirect:/criterionDepartment.do";

@@ -19,13 +19,13 @@ public class CriterionAttController {
 	public List<CriterionDto> list = new ArrayList<>();
 	
 	public CriterionAttController() {
-		list.add(new CriterionDto("B0001", "INNER", "Y", "출근"));
-		list.add(new CriterionDto("B0002", "INNER", "Y", "지각"));
-		list.add(new CriterionDto("B0003", "INNER", "N", "결근"));
-		list.add(new CriterionDto("B0004", "OUTER", "N", "외근"));
-		list.add(new CriterionDto("B0005", "OUTER", "N", "출장"));
-		list.add(new CriterionDto("B0006", "INNER", "N", "연장"));
-		list.add(new CriterionDto("B0007", "INNER", "N", "휴가"));
+		list.add(new CriterionDto("B0001", "INNER", "Y", "출근", "Y"));
+		list.add(new CriterionDto("B0002", "INNER", "Y", "지각", "Y"));
+		list.add(new CriterionDto("B0003", "INNER", "N", "결근", "Y"));
+		list.add(new CriterionDto("B0004", "OUTER", "N", "외근", "Y"));
+		list.add(new CriterionDto("B0005", "OUTER", "N", "출장", "Y"));
+		list.add(new CriterionDto("B0006", "INNER", "N", "연장", "Y"));
+		list.add(new CriterionDto("B0007", "INNER", "N", "휴가", "Y"));
 	}
 	
 	@RequestMapping("/criterionAttendance.do")
@@ -41,7 +41,7 @@ public class CriterionAttController {
 		String status = request.getParameter("status");
 		String name = request.getParameter("name");
 		
-		CriterionDto criterionDto = new CriterionDto(code, type, status, name);
+		CriterionDto criterionDto = new CriterionDto(code, type, status, name, "Y");
 		list.add(criterionDto);
 		
 		return "redirect:/criterionAttendance.do";

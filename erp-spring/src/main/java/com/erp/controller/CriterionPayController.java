@@ -19,13 +19,13 @@ public class CriterionPayController {
 	public List<CriterionDto> list = new ArrayList<>();
 	
 	public CriterionPayController() {
-		list.add(new CriterionDto("C0001", "PAY", "Y", "기본급"));
-		list.add(new CriterionDto("C0002", "PAY", "Y", "초과수당"));
-		list.add(new CriterionDto("C0003", "PAY", "N", "식비"));
-		list.add(new CriterionDto("C0004", "PAY", "N", "연장수당"));
-		list.add(new CriterionDto("C0005", "DEDUCT", "Y", "소득세"));
-		list.add(new CriterionDto("C0006", "DEDUCT", "Y", "지방소득세"));
-		list.add(new CriterionDto("C0007", "DEDUCT", "Y", "국민연금"));
+		list.add(new CriterionDto("C0001", "PAY", "Y", "기본급", "Y"));
+		list.add(new CriterionDto("C0002", "PAY", "Y", "초과수당", "N"));
+		list.add(new CriterionDto("C0003", "PAY", "N", "식비", "N"));
+		list.add(new CriterionDto("C0004", "PAY", "N", "연장수당", "Y"));
+		list.add(new CriterionDto("C0005", "DEDUCT", "Y", "소득세", "Y"));
+		list.add(new CriterionDto("C0006", "DEDUCT", "Y", "지방소득세", "Y"));
+		list.add(new CriterionDto("C0007", "DEDUCT", "Y", "국민연금", "Y"));
 	}
 	
 	@RequestMapping("/criterionPayroll.do")
@@ -41,7 +41,7 @@ public class CriterionPayController {
 		String status = request.getParameter("status");
 		String name = request.getParameter("name");
 		
-		CriterionDto criterionDto = new CriterionDto(code, type, status, name);
+		CriterionDto criterionDto = new CriterionDto(code, type, status, name, "N");
 		list.add(criterionDto);
 		
 		return "redirect:/criterionPayroll.do";
