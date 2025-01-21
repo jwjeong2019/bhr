@@ -6,17 +6,17 @@ const menuList = [
         subMenus: [
             {
                 key: 1,
-                url: '/html/criterion_department.html',
+                url: '/criterionDepartment.do',
                 nm: '부서 기준 관리'
             },
             {
                 key: 2,
-                url: '/html/criterion_attendance.html',
+                url: '/criterionAttendance.do',
                 nm: '근태 기준 관리'
             },
             {
                 key: 3,
-                url: '/html/criterion_payroll.html',
+                url: '/criterionPayroll.do',
                 nm: '급여 기준 관리'
             },
         ]
@@ -26,17 +26,17 @@ const menuList = [
         subMenus: [
             {
                 key: 4,
-                url: '/html/hr_department.html',
+                url: '/hrDepartment.do',
                 nm: '부서 관리'
             },
             {
                 key: 5,
-                url: '/html/hr_department_member.html',
+                url: '/hrDepartmentMember.do',
                 nm: '부서원 관리'
             },
             {
                 key: 6,
-                url: '/html/hr_employee.html',
+                url: '/hrEmployee.do',
                 nm: '사원 관리'
             },
         ]
@@ -46,17 +46,17 @@ const menuList = [
         subMenus: [
             {
                 key: 7,
-                url: '/html/attendance_situation.html',
+                url: '/attendanceSituation.do',
                 nm: '근태 현황'
             },
             {
                 key: 8,
-                url: '/html/attendance_receive.html',
+                url: '/attendanceReceive.do',
                 nm: '근태 신청 관리'
             },
             {
                 key: 9,
-                url: '/html/attendance_annualleave_situation.html',
+                url: '/attendanceAnnualleaveSituation.do',
                 nm: '연차 현황'
             },
         ]
@@ -66,12 +66,12 @@ const menuList = [
         subMenus: [
             {
                 key: 10,
-                url: '/html/payroll_calculated_retrieval.html',
+                url: '/payrollCalculatedRetrieval.do',
                 nm: '급여 산정 조회'
             },
             {
                 key: 11,
-                url: '/html/payroll_payment.html',
+                url: '/payrollPayment.do',
                 nm: '급여 지급 관리'
             },
         ]
