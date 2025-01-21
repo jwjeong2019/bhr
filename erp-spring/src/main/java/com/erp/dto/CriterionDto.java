@@ -6,7 +6,7 @@ public class CriterionDto {
 	private String type;
 	private String status;
 	private String name;
-	private String arrangement;
+	private String arrangement; // 제거 예정
 	
 	public CriterionDto(String code, String type, String status, String name, String arrangement) {
 		super();
