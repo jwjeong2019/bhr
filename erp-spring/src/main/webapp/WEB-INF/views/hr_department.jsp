@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String path = request.getContextPath(); %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.erp.dto.CriterionDto" %>
+<%
+	String path = request.getContextPath();
+	String name = (String) session.getAttribute("name");
+	List<CriterionDto> listArrN = (ArrayList) request.getAttribute("listArrN");
+	List<CriterionDto> listArrY = (ArrayList) request.getAttribute("listArrY");
+%>
+<%!
+	public String convertToJson(CriterionDto dto) {
+		return String.format("{'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}", dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
+	}
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,31 +27,29 @@
     @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Gowun+Dodum&family=Hi+Melody&display=swap');
     </style>
     <script type="module" src="<%=path%>/resources/js/scroll_box_couple.js"></script>
+    <script type="module" src="<%=path%>/resources/js/component/side_menu.js"></script>
 </head>
 <body>
-    <header class="nav">
+    <header class="nav pos-fixed top-0 left-0 w-100vw bg-white zi-1">
         <nav class="container space">
-            <img id="logo" src="https://img.freepik.com/premium-vector/erp-vector-icon-web_116137-3113.jpg?w=740">
-            <div class="container w-300 space center">
-                <div>admin님 반갑습니다.</div>
-                <button class="btn btn-primary">로그아웃</button>
+            <form action="main.do" method="get">
+            	<button class="b-none bg-none pd-0">
+		            <img id="logo" url="/html/main.html" src="https://img.freepik.com/premium-vector/erp-vector-icon-web_116137-3113.jpg?w=740">
+            	</button>
+            </form>
+            <div class="container w-25vw space center mg-r-70">
+                <div class="f-20" id="greet">${name}님 반갑습니다.</div>
+                <form action="logoutAction.do" method="post">
+	                <button id="logout" class="btn btn-primary" type="submit">로그아웃</button>
+                </form>
             </div>
         </nav>
     </header>
-    <section class="container space pd-30">
-        <aside>
-            <h2>기준관리</h2>
-            <h3>부서 기준 관리</h3>
-            <h3>근태 기준 관리</h3>
-            <h3>급여 기준 관리</h3>
-            <h2>인사관리</h2>
-            <h3>부서 관리</h3>
-            <h3>부서원 관리</h3>
-            <h3>사원 관리</h3>
-            <h2>근태관리</h2>
-            <h2>급여관리</h2>
+    <section class="container space pd-100-30">
+        <aside id="side-menu">
+            <!-- load side_menu.js -->
         </aside>
-        <main class="mg-l-30 w-70p">
+        <main class="mg-l-30 w-80p">
             <header>
                 <h1>부서 관리</h1>
             </header>
@@ -53,16 +63,13 @@
                             <span class="w-30p">명칭</span>
                         </div>
                         <ul class="scroll-box-left">
-                            <li class="container space">
-                                <span class="f-20 w-30p">A0004</span>
-                                <span class="f-20 w-30p">DEVELOP</span>
-                                <span class="f-20 w-30p">개발2팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">A0005</span>
-                                <span class="f-20 w-30p">BUSINESS</span>
-                                <span class="f-20 w-30p">영업1팀</span>
-                            </li>
+                            <% for (int i = 0; i < listArrN.size(); i++) { %>
+	                            <li class="container space" onclick="onClickAddItem(<%=convertToJson(listArrN.get(i)) %>)">
+					                <span class="f-20 w-30p"><%=listArrN.get(i).getCode() %></span>
+					                <span class="f-20 w-30p"><%=listArrN.get(i).getType() %></span>
+					                <span class="f-20 w-30p"><%=listArrN.get(i).getName() %></span>
+					            </li>                            	
+                            <% } %>
                         </ul>
                     </div>
                 </article>
@@ -75,45 +82,69 @@
                             <span class="w-30p">명칭</span>
                         </div>
                         <ul class="scroll-box-right">
-                            <li class="container space">
-                                <span class="f-20 w-30p">A0001</span>
-                                <span class="f-20 w-30p">MANAGE</span>
-                                <span class="f-20 w-30p">경영팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">A0002</span>
-                                <span class="f-20 w-30p">HR</span>
-                                <span class="f-20 w-30p">인사팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">A0003</span>
-                                <span class="f-20 w-30p">DEVELOP</span>
-                                <span class="f-20 w-30p">개발1팀</span>
-                            </li>
-                            <li class="container space">
-                                <span class="f-20 w-30p">A0006</span>
-                                <span class="f-20 w-30p">BUSINESS</span>
-                                <span class="f-20 w-30p">영업2팀</span>
-                            </li>
+                            <% for (int i = 0; i < listArrY.size(); i++) { %>
+	                            <li class="container space" onclick="onClickRemoveItem(<%=convertToJson(listArrY.get(i)) %>)">
+					                <span class="f-20 w-30p"><%=listArrY.get(i).getCode() %></span>
+					                <span class="f-20 w-30p"><%=listArrY.get(i).getType() %></span>
+					                <span class="f-20 w-30p"><%=listArrY.get(i).getName() %></span>
+					            </li>                            	
+                            <% } %>
                         </ul>
                     </div>
                 </article>
             </section>
         </main>
     </section>
-    <dialog class="alert-insert">
-        <span class="f-30">부서를 추가하시겠습니까?</span>
-        <div class="container mg-v-25 space w-70p">
-            <button class="btn btn-success">예</button>
-            <button class="btn btn-primary">아니오</button>
-        </div>
-    </dialog>
-    <dialog class="alert-delete">
-        <span class="f-30">부서를 제거하시겠습니까?</span>
-        <div class="container mg-v-25 space w-70p">
-            <button class="btn btn-success">예</button>
-            <button class="btn btn-primary">아니오</button>
-        </div>
-    </dialog>
+    <form id="form-update">
+    	<input id="code" hidden name="code">
+    	<input id="arrangement" hidden name="arrangement">
+	    <dialog id="dialog-add" class="alert-insert">
+	        <span class="f-30">부서를 추가하시겠습니까?</span>
+	        <div class="container mg-v-25 space w-70p">
+	            <button class="btn btn-success" onclick="onClickAddYes()">예</button>
+	            <button class="btn btn-primary" onclick="onClickAddNo()">아니오</button>
+	        </div>
+	    </dialog>
+	    <dialog id="dialog-remove" class="alert-delete">
+	        <span class="f-30">부서를 제거하시겠습니까?</span>
+	        <div class="container mg-v-25 space w-70p">
+	            <button class="btn btn-success" onclick="onClickRemoveYes()">예</button>
+	            <button class="btn btn-primary" onclick="onClickRemoveNo()">아니오</button>
+	        </div>
+	    </dialog>
+    </form>
 </body>
+<script>
+	const formUpdate = document.getElementById('form-update');	
+	const dialogAdd = document.getElementById('dialog-add');
+	const dialogRem = document.getElementById('dialog-remove');
+	function onClickAddItem(item) {
+		console.log(item);
+		dialogAdd.showModal();
+		document.getElementById('code').value = item.code;
+		document.getElementById('arrangement').value = 'Y';
+	}
+	function onClickAddYes() {
+		formUpdate.action = 'hrDepartmentUpdate.do';
+		formUpdate.method = 'post';
+		formUpdate.submit();
+	}
+	function onClickAddNo() {
+		dialogAdd.close();
+	}
+	function onClickRemoveItem(item) {
+		console.log(item);
+		dialogRem.showModal();
+		document.getElementById('code').value = item.code;
+		document.getElementById('arrangement').value = 'N';
+	}
+	function onClickRemoveYes() {
+		formUpdate.action = 'hrDepartmentUpdate.do';
+		formUpdate.method = 'post';
+		formUpdate.submit();
+	}
+	function onClickRemoveNo() {
+		dialogRem.close();
+	}
+</script>
 </html>
