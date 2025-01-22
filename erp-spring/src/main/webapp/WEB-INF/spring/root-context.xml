@@ -18,6 +18,15 @@
 	
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="configLocation" value="classpath:/mybatis-config.xml"></beans:property>
+		<beans:property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"></beans:property>
 	</beans:bean>
+	
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></beans:constructor-arg>
+	</beans:bean>
+	
+	<context:component-scan base-package="com.erp.dao"></context:component-scan>
+	<context:component-scan base-package="com.erp.service"></context:component-scan>
 	
 </beans:beans>
