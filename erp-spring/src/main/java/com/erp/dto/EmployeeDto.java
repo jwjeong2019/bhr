@@ -13,7 +13,13 @@ public class EmployeeDto {
 	private String position;
 	private String role;
 	private LocalDate joinDate;
-	private DepartmentDto department;
+	private int depId;
+	private DepartmentDto department; // 제거 예정
+	
+	
+	public EmployeeDto() {
+		super();
+	}
 
 	public EmployeeDto(int id, String code, String email, String password, String nickname, String name,
 			String position, String role, LocalDate joinDate, DepartmentDto department) {
@@ -102,6 +108,14 @@ public class EmployeeDto {
 		this.joinDate = joinDate;
 	}
 
+	public int getDepId() {
+		return depId;
+	}
+
+	public void setDepId(int depId) {
+		this.depId = depId;
+	}
+
 	public DepartmentDto getDepartment() {
 		return department;
 	}
@@ -109,6 +123,5 @@ public class EmployeeDto {
 	public void setDepartment(DepartmentDto department) {
 		this.department = department;
 	}
-	
 
 }
