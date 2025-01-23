@@ -3,7 +3,31 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.erp.mapper.DepartmentMapper">
-  <select id="selectDepartment" resultType="departmentVO">
-    select * from department
+  <select id="selectDepartment" parameterType="departmentDto" resultMap="selectDepartmentResultMap">
+    select
+    	d.id, d.cri_id, c.code, c.type, c.status, c.name
+    from
+    	department d
+    left join
+    	criterion c
+    on c.id = d.cri_id
   </select>
+  <resultMap type="departmentVO" id="selectDepartmentResultMap">
+  	<id property="id" column="id"/>
+  	<association property="criterion" javaType="CriterionVO">
+  		<id property="id" column="cri_id"/>
+  		<result property="code" column="code"/>
+  		<result property="type" column="type"/>
+  		<result property="status" column="status"/>
+  		<result property="name" column="name"/>
+  	</association>
+  </resultMap>
+  
+  <insert id="insertDepartment" parameterType="departmentDto">
+  	insert into department (cri_id) values (#{criterion.id})
+  </insert>
+  
+  <delete id="deleteDepartment" parameterType="departmentDto">
+  	delete from department where id = #{id}
+  </delete>
 </mapper>
