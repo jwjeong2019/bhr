@@ -25,7 +25,9 @@ public class CriterionDepServiceImpl implements CriterionDepService {
 		// TODO Auto-generated method stub
 		CriDepDto dtoRes = new CriDepDto();
 		
-		List<CriterionDto> voList = criterionDao.selectList(new CriterionDto())
+		CriterionDto dtoSel = new CriterionDto();
+		dtoSel.setType("DEP");
+		List<CriterionDto> voList = criterionDao.selectList(dtoSel)
 				.stream()
 				.map(vo -> {
 					CriterionDto dto = new CriterionDto();
