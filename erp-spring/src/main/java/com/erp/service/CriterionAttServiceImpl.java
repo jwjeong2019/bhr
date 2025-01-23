@@ -33,7 +33,7 @@ public class CriterionAttServiceImpl implements CriterionAttService {
 					CriterionDto dto = new CriterionDto();
 					dto.setCode(vo.getCode());
 					dto.setType(vo.getType());
-					dto.setStatus1(vo.getStatus());
+					dto.setStatus(vo.getStatus());
 					dto.setName(vo.getName());
 					return dto;
 				})
@@ -51,7 +51,7 @@ public class CriterionAttServiceImpl implements CriterionAttService {
 		CriterionDto dtoIns = new CriterionDto();
 		dtoIns.setCode(dtoReq.getReqCode());
 		dtoIns.setType(dtoReq.getReqType());
-		dtoIns.setStatus1(dtoReq.getReqStatus());
+		dtoIns.setStatus(dtoReq.getReqStatus());
 		dtoIns.setName(dtoReq.getReqName());
 		int count = criterionDao.insert(dtoIns);
 		
@@ -68,7 +68,7 @@ public class CriterionAttServiceImpl implements CriterionAttService {
 		CriterionDto dtoUpd = new CriterionDto();
 		dtoUpd.setCode(dtoReq.getReqCode());
 		dtoUpd.setType(dtoReq.getReqType());
-		dtoUpd.setStatus1(dtoReq.getReqStatus());
+		dtoUpd.setStatus(dtoReq.getReqStatus());
 		dtoUpd.setName(dtoReq.getReqName());
 		int count = criterionDao.update(dtoUpd);
 		

@@ -12,8 +12,8 @@
     	<if test='type != null and !type.equals("")'>
     		and type = #{type}
     	</if>
-    	<if test="status1 == 'Y' or status1 == 'N'">
-    		and status = #{status1}
+    	<if test="status == 'Y' or status == 'N'">
+    		and status = #{status}
     	</if>
     	<if test='name != null and !name.equals("")'>
     		and name = #{name}
@@ -25,12 +25,12 @@
   	insert into criterion (
 		<if test='code != null and !code.equals("")'>code,</if>
 		<if test='type != null and !type.equals("")'>type,</if>
-		<if test="status1 == 'Y' or status1 == 'N'">status,</if>
+		<if test="status == 'Y' or status == 'N'">status,</if>
 		<if test='name != null and !name.equals("")'>name</if>
   	) values (
 		<if test='code != null and !code.equals("")'>#{code},</if>
 		<if test='type != null and !type.equals("")'>#{type},</if>
-		<if test="status1 == 'Y' or status1 == 'N'">#{status1},</if>
+		<if test="status == 'Y' or status == 'N'">#{status},</if>
 		<if test='name != null and !name.equals("")'>#{name}</if>
   	)
   </insert>
@@ -41,8 +41,8 @@
     	<if test='type != null and !type.equals("")'>
     		type = #{type},
     	</if>
-    	<if test="status1 == 'Y' or status1 == 'N'">
-    		status = #{status1},
+    	<if test="status == 'Y' or status == 'N'">
+    		status = #{status},
     	</if>
     	<if test='name != null and !name.equals("")'>
     		name = #{name},

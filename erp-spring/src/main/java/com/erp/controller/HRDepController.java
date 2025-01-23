@@ -23,15 +23,6 @@ public class HRDepController {
 	public List<CriterionDto> listCri = new ArrayList<>();
 	public List<DepartmentDto> listDep = new ArrayList<>();
 	
-	public HRDepController() {
-		listCri.add(new CriterionDto("A0005", "DEVELOP", "Y", "개발2팀", "N"));
-		listCri.add(new CriterionDto("A0006", "BUSINESS", "Y", "영업1팀", "N"));
-		listCri.add(new CriterionDto("A0001", "MANAGE", "Y", "경영팀", "Y"));
-		listCri.add(new CriterionDto("A0002", "HR", "Y", "인사팀", "Y"));
-		listCri.add(new CriterionDto("A0003", "DEVELOP", "Y", "개발1팀", "Y"));
-		listCri.add(new CriterionDto("A0004", "BUSINESS", "Y", "영업2팀", "Y"));
-	}
-	
 	@RequestMapping("/hrDepartment.do")
 	public String hrDepartment(HttpServletRequest request, Model model) {
 		Map<String, ?> reqFlashMap = RequestContextUtils.getInputFlashMap(request);

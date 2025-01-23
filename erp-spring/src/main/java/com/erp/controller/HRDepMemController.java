@@ -22,21 +22,6 @@ public class HRDepMemController {
 	private List<DepartmentDto> listDep = new ArrayList<>();
 	private List<EmployeeDto> listEmp = new ArrayList<>();
 	private List<EmployeeDto> listMem = new ArrayList<>();
-	
-	public HRDepMemController() {
-		listDep.add(new DepartmentDto(1, new CriterionDto("A0001", "MANAGE", "Y", "경영팀", "Y")));
-		listDep.add(new DepartmentDto(2, new CriterionDto("A0002", "HR", "Y", "인사팀", "Y")));
-		listDep.add(new DepartmentDto(3, new CriterionDto("A0003", "DEVELOP", "Y", "개발1팀", "Y")));
-		listDep.add(new DepartmentDto(4, new CriterionDto("A0004", "BUSINESS", "Y", "영업1팀", "Y")));
-		
-		listEmp.add(new EmployeeDto(1, "E0001", "emp1@epr.kr", "1234", "준", "이형준", null, "USER", LocalDate.now(), null));
-		listEmp.add(new EmployeeDto(2, "E0002", "emp2@epr.kr", "1234", "크리스탈", "김미주", null, "USER", LocalDate.now(), null));
-		listEmp.add(new EmployeeDto(3, "E0003", "emp3@epr.kr", "1234", "베티", "최희영", null, "USER", LocalDate.now(), null));
-		listEmp.add(new EmployeeDto(4, "E0004", "emp4@epr.kr", "1234", "마이크", "정우영", null, "USER", LocalDate.now(), null));
-		
-		listMem.add(new EmployeeDto(5, "E0005", "emp5@epr.kr", "1234", "토니", "박우식", "대리", "USER", LocalDate.now(), listDep.get(2)));
-		listMem.add(new EmployeeDto(6, "E0006", "emp6@epr.kr", "1234", "에일리", "홍연화", "사원", "USER", LocalDate.now(), listDep.get(0)));
-	}
 
 	@RequestMapping("/hrDepartmentMember.do")
 	public String hrDepartmentMember(Model model) {

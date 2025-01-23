@@ -9,7 +9,7 @@
 %>
 <%!
 	public String convertToJson(CriterionDto dto) {
-		return String.format("{'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}", dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
+		return String.format("{'code': '%s', 'type': '%s', 'status': '%c', 'name': '%s'}", dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
 	}
 %>
 <!DOCTYPE html>
