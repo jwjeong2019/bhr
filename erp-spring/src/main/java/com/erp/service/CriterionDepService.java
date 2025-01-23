@@ -7,9 +7,9 @@ import com.erp.dto.CriDepUpdDto;
 
 public interface CriterionDepService {
 	
-	CriDepDto criterionDepartment(CriDepDto dto);
-	CriDepRegDto criterionDepartmentRegister(CriDepRegDto dto);
-	CriDepUpdDto criterionDepartmentUpdate(CriDepUpdDto dto);
-	CriDepDelDto criterionDepartmentDelete(CriDepDelDto dto);
+	CriDepDto criterionDepartment(CriDepDto dto) throws Exception;
+	CriDepRegDto criterionDepartmentRegister(CriDepRegDto dto) throws Exception;
+	CriDepUpdDto criterionDepartmentUpdate(CriDepUpdDto dto) throws Exception;
+	CriDepDelDto criterionDepartmentDelete(CriDepDelDto dto) throws Exception;
 
 }
