@@ -6,10 +6,14 @@
   
   <typeAliases>
   	<typeAlias type="com.erp.vo.SampleVO" alias="sampleVO"/>
+  	
   	<typeAlias type="com.erp.vo.AdminVO" alias="adminVO"/>
   	<typeAlias type="com.erp.vo.EmployeeVO" alias="employeeVO"/>
   	<typeAlias type="com.erp.vo.CriterionVO" alias="criterionVO"/>
   	<typeAlias type="com.erp.vo.DepartmentVO" alias="departmentVO"/>
+  	
+  	<typeAlias type="com.erp.dto.AdminDto" alias="adminDto"/>
+  	<typeAlias type="com.erp.dto.EmployeeDto" alias="employeeDto"/>
   </typeAliases>
   
 </configuration>
