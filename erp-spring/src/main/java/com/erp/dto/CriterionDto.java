@@ -4,10 +4,15 @@ public class CriterionDto {
 	
 	private String code;
 	private String type;
-	private String status;
+	private String status; // 제거 예정
+	private char status1;
 	private String name;
 	private String arrangement; // 제거 예정
 	
+	public CriterionDto() {
+		super();
+	}
+
 	public CriterionDto(String code, String type, String status, String name, String arrangement) {
 		super();
 		this.code = code;
@@ -56,5 +61,14 @@ public class CriterionDto {
 	public void setArrangement(String arrangement) {
 		this.arrangement = arrangement;
 	}
+
+	public char getStatus1() {
+		return status1;
+	}
+
+	public void setStatus1(char status1) {
+		this.status1 = status1;
+	}
+	
 	
 }
