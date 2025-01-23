@@ -12,13 +12,13 @@
 %>
 <%!
 	public String convertToJson(CriterionDto dto) {
-		return String.format("{'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}", 
-				dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
+		return String.format("{'id': '%s', 'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}", 
+				dto.getId(), dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
 	}
 	public String convertToJson(DepartmentDto dto) {
 		CriterionDto c = dto.getCriterion();
-		return String.format("{'id': '%s', 'criterion': {'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}}"
-				, dto.getId(), c.getCode(), c.getType(), c.getStatus(), c.getName());
+		return String.format("{'id': '%s', 'criterion': {'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}}",
+				dto.getId(), c.getCode(), c.getType(), c.getStatus(), c.getName());
 	}
 %>
 <!DOCTYPE html>
@@ -104,8 +104,8 @@
         </main>
     </section>
     <form id="form-insert-delete">
-    	<input id="cri-code" hidden name="code">
-    	<input id="dep-id" hidden name="id">
+    	<input id="cri-id" hidden name="criId">
+    	<input id="dep-id" hidden name="depId">
     	<input id="arrangement" hidden name="arrangement">
 	    <dialog id="dialog-insert" class="alert-insert">
 	        <span class="f-30">부서를 추가하시겠습니까?</span>
@@ -133,7 +133,7 @@
 	function onClickInsertItem(item) {
 		console.log(item);
 		dialogIns.showModal();
-		document.getElementById('cri-code').value = item.code;
+		document.getElementById('cri-id').value = item.id;
 	}
 	function onClickInsertYes() {
 		formInsDel.action = 'hrDepartmentInsert.do';
