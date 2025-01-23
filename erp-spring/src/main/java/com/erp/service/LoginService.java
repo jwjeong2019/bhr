@@ -7,7 +7,7 @@ import com.erp.dto.LogoutActionDto;
 public interface LoginService {
 	
 	LoginDto login(LoginDto dto);
-	LoginActionDto loginAction(LoginActionDto dto);
+	LoginActionDto loginAction(LoginActionDto dto) throws Exception;
 	LogoutActionDto logoutAction(LogoutActionDto dto);
 
 }
