@@ -1,7 +1,6 @@
 package com.erp.controller;
 
-import java.util.Map;
-
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,54 +12,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.erp.dto.LoginActionDto;
+import com.erp.dto.LoginDto;
+import com.erp.service.LoginService;
+
 @Controller
 public class LoginController {
 	
-	private static final String LOGIN_ADM_ID = "admin@erp.kr";
-	private static final String LOGIN_ADM_PWD = "1234";
-	private static final String LOGIN_USER_ID = "minji@erp.kr";
-	private static final String LOGIN_USER_PWD = "1234";
+	@Inject
+	private LoginService service;
 
 	@RequestMapping("/login.do")
 	public String login(HttpServletRequest request, Model model) {
-		// flash 속성 파라미터 수집
-		Map<String, ?> reqFlashMap = RequestContextUtils.getInputFlashMap(request);
-		if (reqFlashMap != null) {
-			// msg 파라미터를 받고 login.jsp로 전달
-			String paramMsg = (String) reqFlashMap.get("msg");
-			System.out.println("/login.do --> " + paramMsg);
-			model.addAttribute("msg", paramMsg);
-		}
+		LoginDto dtoReq = new LoginDto();
+		dtoReq.setReqFlashMap(RequestContextUtils.getInputFlashMap(request));
+		LoginDto dtoRes = service.login(dtoReq);
+		
+		model.addAttribute("msg", dtoRes.getResMsg());
 		return "login";
 	}
 	
 	@RequestMapping(path = "/loginAction.do", method = RequestMethod.POST)
-	public String loginAction(HttpServletRequest request, RedirectAttributes ra) {
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
+	public String loginAction(HttpServletRequest request, RedirectAttributes ra) throws Exception {
+		LoginActionDto dtoReq = new LoginActionDto();
+		dtoReq.setReqId(request.getParameter("id"));
+		dtoReq.setReqPwd(request.getParameter("pwd"));
+		LoginActionDto dtoRes = service.loginAction(dtoReq);
 		
-		HttpSession session = request.getSession();
-		
-		if (id.equals(LOGIN_ADM_ID) && pwd.equals(LOGIN_ADM_PWD)) {
-			session.setAttribute("id", 1);
-			session.setAttribute("email", LOGIN_ADM_ID);
-			session.setAttribute("name", "최고관리자");
-			session.setAttribute("role", "MASTER");
-			return "redirect:/main.do";
+		if (dtoRes.isSuccess()) {
+			HttpSession session = request.getSession();
+			session.setAttribute("id", dtoRes.getResId());
+			session.setAttribute("email", dtoRes.getResEmail());
+			session.setAttribute("name", dtoRes.getResName());
+			session.setAttribute("role", dtoRes.getResRole());
+			return dtoRes.getResRedirectUrl();
 		}
 		
-		if (id.equals(LOGIN_USER_ID) && pwd.equals(LOGIN_USER_PWD)) {
-			session.setAttribute("id", 1);
-			session.setAttribute("email", LOGIN_USER_ID);
-			session.setAttribute("name", "김민지");
-			session.setAttribute("role", "USER");
-			return "redirect:/main.do";
-		}
-		
-		// flash 속성 파라미터 방출
-		// URL 파라미터 은닉
 		ra.addFlashAttribute("msg", "fail");
-		return "redirect:/login.do";
+		return dtoRes.getResRedirectUrl();
 	}
 	
 	@PostMapping("/logoutAction.do")
