@@ -7,9 +7,9 @@ import com.erp.dto.CriAttUpdDto;
 
 public interface CriterionAttService {
 	
-	CriAttDto criterionAttendance(CriAttDto dto);
-	CriAttRegDto criterionAttendanceRegister(CriAttRegDto dto);
-	CriAttUpdDto criterionAttendanceUpdate(CriAttUpdDto dto);
-	CriAttDelDto criterionAttendanceDelete(CriAttDelDto dto);
+	CriAttDto criterionAttendance(CriAttDto dto) throws Exception;
+	CriAttRegDto criterionAttendanceRegister(CriAttRegDto dto) throws Exception;
+	CriAttUpdDto criterionAttendanceUpdate(CriAttUpdDto dto) throws Exception;
+	CriAttDelDto criterionAttendanceDelete(CriAttDelDto dto) throws Exception;
 
 }
