@@ -2,11 +2,18 @@ package com.erp.dto;
 
 public class CriterionDto {
 	
+	private int id;
 	private String code;
 	private String type;
 	private char status;
 	private String name;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getCode() {
 		return code;
 	}
@@ -31,5 +38,7 @@ public class CriterionDto {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 	
 }

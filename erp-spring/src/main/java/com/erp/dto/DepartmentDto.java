@@ -5,6 +5,12 @@ public class DepartmentDto {
 	private int id;
 	private CriterionDto criterion;
 	
+	
+	
+	public DepartmentDto() {
+		super();
+	}
+
 	public DepartmentDto(int id, CriterionDto criterion) {
 		super();
 		this.id = id;
