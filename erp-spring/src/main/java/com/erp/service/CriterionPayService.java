@@ -7,9 +7,9 @@ import com.erp.dto.CriPayUpdDto;
 
 public interface CriterionPayService {
 	
-	CriPayDto criterionPayroll(CriPayDto dto);
-	CriPayRegDto criterionPayrollRegister(CriPayRegDto dto);
-	CriPayUpdDto criterionPayrollUpdate(CriPayRegDto dto);
-	CriPayDelDto criterionPayrollDelete(CriPayDelDto dto);
+	CriPayDto criterionPayroll(CriPayDto dto) throws Exception;
+	CriPayRegDto criterionPayrollRegister(CriPayRegDto dto) throws Exception;
+	CriPayUpdDto criterionPayrollUpdate(CriPayUpdDto dto) throws Exception;
+	CriPayDelDto criterionPayrollDelete(CriPayDelDto dto) throws Exception;
 
 }
