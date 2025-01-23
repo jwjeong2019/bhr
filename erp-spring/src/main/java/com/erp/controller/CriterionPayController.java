@@ -4,77 +4,73 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.erp.dto.CriPayDelDto;
+import com.erp.dto.CriPayDto;
+import com.erp.dto.CriPayRegDto;
+import com.erp.dto.CriPayUpdDto;
 import com.erp.dto.CriterionDto;
+import com.erp.service.CriterionDepService;
+import com.erp.service.CriterionPayService;
 
 @Controller
 public class CriterionPayController {
 	
-	public List<CriterionDto> list = new ArrayList<>();
+private static final Logger logger = LogManager.getLogger(CriterionDepController.class);
 	
-	public CriterionPayController() {
-		list.add(new CriterionDto("C0001", "PAY", "Y", "기본급", "Y"));
-		list.add(new CriterionDto("C0002", "PAY", "Y", "초과수당", "N"));
-		list.add(new CriterionDto("C0003", "PAY", "N", "식비", "N"));
-		list.add(new CriterionDto("C0004", "PAY", "N", "연장수당", "Y"));
-		list.add(new CriterionDto("C0005", "DEDUCT", "Y", "소득세", "Y"));
-		list.add(new CriterionDto("C0006", "DEDUCT", "Y", "지방소득세", "Y"));
-		list.add(new CriterionDto("C0007", "DEDUCT", "Y", "국민연금", "Y"));
-	}
+	@Inject
+	private CriterionPayService service;
 	
 	@RequestMapping("/criterionPayroll.do")
-	public String criterionPayroll(Model model) {
-		model.addAttribute("list", list);
+	public String criterionPayroll(Model model) throws Exception {
+		CriPayDto dtoReq = new CriPayDto();
+		CriPayDto dtoRes = service.criterionPayroll(dtoReq);
+		
+		model.addAttribute("list", dtoRes.getResList());
 		return "criterion_payroll";
 	}
 	
 	@PostMapping("/criterionPayrollRegister.do")
-	public String criterionPayrollRegister(HttpServletRequest request) {
-		String code = request.getParameter("code");
-		String type = request.getParameter("type");
-		String status = request.getParameter("status");
-		String name = request.getParameter("name");
+	public String criterionPayrollRegister(HttpServletRequest request) throws Exception {
+		CriPayRegDto dtoReq = new CriPayRegDto();
+		dtoReq.setReqCode(request.getParameter("code"));
+		dtoReq.setReqType(request.getParameter("type"));
+		dtoReq.setReqStatus(request.getParameter("status").charAt(0));
+		dtoReq.setReqName(request.getParameter("name"));
 		
-		CriterionDto criterionDto = new CriterionDto(code, type, status, name, "N");
-		list.add(criterionDto);
+		CriPayRegDto dtoRes = service.criterionPayrollRegister(dtoReq);
 		
-		return "redirect:/criterionPayroll.do";
+		return dtoRes.getResRedirectUrl();
 	}
 	
 	@PostMapping("/criterionPayrollUpdate.do")
-	public String criterionPayrollUpdate(HttpServletRequest request) {
-		String code = request.getParameter("code");
-		String type = request.getParameter("type");
-		String status = request.getParameter("status");
-		String name = request.getParameter("name");
+	public String criterionPayrollUpdate(HttpServletRequest request) throws Exception {
+		CriPayUpdDto dtoReq = new CriPayUpdDto();
+		dtoReq.setReqCode(request.getParameter("code"));
+		dtoReq.setReqType(request.getParameter("type"));
+		dtoReq.setReqStatus(request.getParameter("status").charAt(0));
+		dtoReq.setReqName(request.getParameter("name"));
+		CriPayUpdDto dtoRes = service.criterionPayrollUpdate(dtoReq);
 		
-		list = list.stream().map(dto -> {
-			if (dto.getCode().equals(code)) {
-				dto.setType(type);
-				dto.setStatus(status);
-				dto.setName(name);
-				return dto;
-			}
-			return dto;
-		}).collect(Collectors.toList());
-		
-		return "redirect:/criterionPayroll.do";
+		return dtoRes.getResRedirectUrl();
 	}
 	
 	@PostMapping("/criterionPayrollDelete.do")
-	public String criterionPayrollDelete(HttpServletRequest request) {
-		String code = request.getParameter("code");
+	public String criterionPayrollDelete(HttpServletRequest request) throws Exception {
+		CriPayDelDto dtoReq = new CriPayDelDto();
+		dtoReq.setReqCode(request.getParameter("code"));
+		CriPayDelDto dtoRes = service.criterionPayrollDelete(dtoReq);
 		
-		list = list.stream().filter(dto -> !dto.getCode().equals(code))
-				.collect(Collectors.toList());
-		
-		return "redirect:/criterionPayroll.do";
+		return dtoRes.getResRedirectUrl();
 	}
 	
 }
