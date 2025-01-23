@@ -15,6 +15,7 @@
   	<typeAlias type="com.erp.dto.AdminDto" alias="adminDto"/>
   	<typeAlias type="com.erp.dto.EmployeeDto" alias="employeeDto"/>
   	<typeAlias type="com.erp.dto.CriterionDto" alias="criterionDto"/>
+  	<typeAlias type="com.erp.dto.DepartmentDto" alias="departmentDto"/>
   </typeAliases>
   
 </configuration>
