@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.erp.dto.EmployeeDto;
 import com.erp.vo.EmployeeVO;
 
 @Repository
@@ -18,9 +19,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<EmployeeVO> selectEmployee() throws Exception {
+	public EmployeeVO selectOne(EmployeeDto dto) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE + ".selectEmployee");
+		return sqlSession.selectOne(NAMESPACE + ".selectEmployee", dto);
 	}
+	
+	@Override
+	public List<EmployeeVO> selectList(EmployeeDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE + ".selectEmployee", dto);
+	}
+
 
 }
