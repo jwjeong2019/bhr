@@ -1,10 +1,17 @@
 package com.erp.vo;
 
+import com.erp.dto.DepartmentDto;
+
 public class DepartmentVO {
 	
 	private int id;
 	private CriterionVO criterion;
 	
+	
+	public DepartmentVO() {
+		super();
+	}
+
 	public DepartmentVO(int id, CriterionVO criterion) {
 		super();
 		this.id = id;
@@ -22,6 +29,13 @@ public class DepartmentVO {
 	}
 	public void setCriterion(CriterionVO criterion) {
 		this.criterion = criterion;
+	}
+	
+	public DepartmentDto toDto() {
+		DepartmentDto dto = new DepartmentDto();
+		dto.setId(id);
+		dto.setCriterion(criterion.toDto());
+		return dto;
 	}
 
 }

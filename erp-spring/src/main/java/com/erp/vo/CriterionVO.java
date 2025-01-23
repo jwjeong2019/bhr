@@ -1,5 +1,7 @@
 package com.erp.vo;
 
+import com.erp.dto.CriterionDto;
+
 public class CriterionVO {
 	
 	private int id;
@@ -55,6 +57,16 @@ public class CriterionVO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public CriterionDto toDto() {
+		CriterionDto dto = new CriterionDto();
+		dto.setId(id);
+		dto.setCode(code);
+		dto.setType(type);
+		dto.setStatus(status);
+		dto.setName(name);
+		return dto;
 	}
 
 }
