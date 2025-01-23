@@ -6,8 +6,8 @@ import com.erp.dto.HRDepInsDto;
 
 public interface HRDepService {
 	
-	HRDepDto hrDepartment(HRDepDto dto);
-	HRDepInsDto hrDepartmentInsert(HRDepInsDto dto);
-	HRDepDelDto hrDepartmentDelete(HRDepDelDto dto);
+	HRDepDto hrDepartment(HRDepDto dto) throws Exception;
+	HRDepInsDto hrDepartmentInsert(HRDepInsDto dto) throws Exception;
+	HRDepDelDto hrDepartmentDelete(HRDepDelDto dto) throws Exception;
 
 }
