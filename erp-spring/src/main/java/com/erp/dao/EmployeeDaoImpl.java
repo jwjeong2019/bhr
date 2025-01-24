@@ -30,5 +30,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return sqlSession.selectList(NAMESPACE + ".selectEmployee", dto);
 	}
 
+	@Override
+	public int update(EmployeeDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAMESPACE + ".updateEmployee", dto);
+	}
+
 
 }
