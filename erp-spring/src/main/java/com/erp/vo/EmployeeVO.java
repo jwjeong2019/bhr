@@ -2,6 +2,8 @@ package com.erp.vo;
 
 import java.time.LocalDate;
 
+import com.erp.dto.EmployeeDto;
+
 public class EmployeeVO {
 
 	private int id;
@@ -17,6 +19,12 @@ public class EmployeeVO {
 	private LocalDate joinDate;
 	private DepartmentVO department;
 	
+	
+	
+	public EmployeeVO() {
+		super();
+	}
+
 	public EmployeeVO(int id, String code, String email, String password, String nickname, String name,
 			LocalDate birthday, String phone, String position, String role, LocalDate joinDate,
 			DepartmentVO department) {
@@ -33,6 +41,23 @@ public class EmployeeVO {
 		this.role = role;
 		this.joinDate = joinDate;
 		this.department = department;
+	}
+	
+	public EmployeeDto toDto() {
+		EmployeeDto dto = new EmployeeDto();
+		dto.setId(id);
+		dto.setCode(code);
+		dto.setEmail(email);
+		dto.setPassword(password);
+		dto.setNickname(nickname);
+		dto.setName(name);
+		dto.setBirthday(birthday);
+		dto.setPhone(phone);
+		dto.setPosition(position);
+		dto.setRole(role);
+		dto.setJoinDate(joinDate);
+		dto.setDepartment(department.toDto());
+		return dto;
 	}
 
 	public int getId() {
