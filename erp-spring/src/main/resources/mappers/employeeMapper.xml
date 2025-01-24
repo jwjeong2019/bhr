@@ -3,10 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.erp.mapper.EmployeeMapper">
-  <select id="selectEmployee" parameterType="employeeDto" resultType="employeeVO">
-    select * from employee
+  <select id="selectEmployee" parameterType="employeeDto" resultMap="selectEmployeeResultMap">
+    select e.id, e.code as e_code, e.email, e.password, e.nickname, e.name as e_name, e.birthday, e.phone, e.position, e.role, e.join_date, e.dep_id,
+    	d.cri_id,
+    	c.code as c_code, c.type, c.status, c.name as c_name
+    from
+    	employee e 
+    left join
+    	department d
+    on d.id = e.dep_id
+   	left join
+   		criterion c
+   	on c.id = d.cri_id
     <where>
-    	<if test='id != null and id > 0'>
+    	<if test='id > 0'>
     		and id = #{id}
     	</if>
     	<if test='email != null and !email.equals("")'>
@@ -15,6 +25,58 @@
     	<if test='password != null and !password.equals("")'>
     		and password = #{password}
     	</if>
+    	<if test='sqlNullDep != null and !sqlNullDep.equals("")'>
+    		and dep_id is ${sqlNullDep}
+    	</if>
     </where>
   </select>
+  <resultMap type="employeeVO" id="selectEmployeeResultMap">
+  	<id property="id" column="id"/>
+  	<result property="code" column="e_code"/>
+  	<result property="email" column="email"/>
+  	<result property="password" column="password"/>
+  	<result property="nickname" column="nickname"/>
+  	<result property="name" column="e_name"/>
+  	<result property="birthday" column="birthday"/>
+  	<result property="phone" column="phone"/>
+  	<result property="position" column="position"/>
+  	<result property="role" column="role"/>
+  	<result property="joinDate" column="join_date"/>
+  	<association property="department" javaType="DepartmentVO">
+  		<id property="id" column="dep_id"/>
+  		<association property="criterion" javaType="CriterionVO">
+  			<id property="id" column="cri_id"/>
+  			<result property="code" column="c_code"/>
+  			<result property="type" column="type"/>
+  			<result property="status" column="status"/>
+  			<result property="name" column="c_name"/>
+  		</association>
+  	</association>
+  </resultMap>
+  
+  <update id="updateEmployee" parameterType="employeeDto">
+  	update employee
+  	<set>
+  		<if test='email != null and !email.equals("")'>
+  			email = #{email},
+  		</if>
+  		<if test='password != null and !password.equals("")'>
+  			password = #{password},
+  		</if>
+  		<if test='nickname != null and !nickname.equals("")'>
+  			nickname = #{nickname},
+  		</if>
+  		<if test='name != null and !name.equals("")'>
+  			name = #{name},
+  		</if>
+  		<if test='phone != null and !phone.equals("")'>
+  			phone = #{phone},
+  		</if>
+  		<if test='position != null and !position.equals("")'>
+  			position = #{position},
+  		</if>
+  		dep_id = #{depId},
+  	</set>
+  	where id = #{id}
+  </update>
 </mapper>
