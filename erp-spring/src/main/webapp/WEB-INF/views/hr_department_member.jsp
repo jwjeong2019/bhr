@@ -168,16 +168,16 @@
     	<input id="upd-dep-id" name="depId" hidden>
     	<input id="upd-emp-id" name="empId" hidden>
     </form>
-    <form id="form-delete">
+    <!-- <form id="form-delete">
     	<input id="del-emp-id" name="empId" hidden>
-    </form>
+    </form> -->
 </body>
 <script>
 	if ('${msg}' == 'already existing Department.') {
 		alert('${msg}');
 	}
 	const formUpd = document.getElementById('form-update');
-	const formDel = document.getElementById('form-delete');
+	//const formDel = document.getElementById('form-delete');
 	const dialogIns = document.getElementById('dialog-insert');
 	const dialogDel = document.getElementById('dialog-delete');
 	
@@ -199,7 +199,8 @@
 	function onClickMemItem(item) {
 		console.log(item);
 		document.getElementById('btn-remove').style.display = 'inline-block';
-		document.getElementById('del-emp-id').value = item.id;
+		document.getElementById('upd-emp-id').value = item.id;
+		document.getElementById('upd-dep-id').value = null;
 	}
 	
 	function onClickAdd() {
@@ -208,9 +209,9 @@
 		formUpd.submit();
 	}
 	function onClickRemove() {
-		formDel.action = 'hrDepartmentMemberDelete.do';
-		formDel.method = 'post';
-		formDel.submit();
+		formUpd.action = 'hrDepartmentMemberUpdate.do';
+		formUpd.method = 'post';
+		formUpd.submit();
 	}
 </script>
 </html>
