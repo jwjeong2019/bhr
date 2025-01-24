@@ -10,11 +10,15 @@ public class EmployeeDto {
 	private String password;
 	private String nickname;
 	private String name;
+	private LocalDate birthday;
+	private String phone;
 	private String position;
 	private String role;
 	private LocalDate joinDate;
-	private int depId;
-	private DepartmentDto department; // 제거 예정
+	private Integer depId;
+	
+	private DepartmentDto department;
+	private String sqlNullDep;
 	
 	
 	public EmployeeDto() {
@@ -84,6 +88,22 @@ public class EmployeeDto {
 		this.name = name;
 	}
 
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getPosition() {
 		return position;
 	}
@@ -108,11 +128,11 @@ public class EmployeeDto {
 		this.joinDate = joinDate;
 	}
 
-	public int getDepId() {
+	public Integer getDepId() {
 		return depId;
 	}
 
-	public void setDepId(int depId) {
+	public void setDepId(Integer depId) {
 		this.depId = depId;
 	}
 
@@ -124,4 +144,12 @@ public class EmployeeDto {
 		this.department = department;
 	}
 
+	public String getSqlNullDep() {
+		return sqlNullDep;
+	}
+
+	public void setSqlNullDep(String sqlNullDep) {
+		this.sqlNullDep = sqlNullDep;
+	}
+	
 }
