@@ -85,11 +85,11 @@
                 </article>
                 <article class="card w-40p">
                     <span class="f-30">사원 정보</span>
-                    <!-- <div class="container f-col mg-v-25" style="height: 70%; justify-content: center; align-items: center;">
+                    <div id="info-view-blank" class="container f-col mg-v-25" style="height: 70%; justify-content: center; align-items: center;">
                         <span style="font-size: 70px;">ℹ️</span>
                         <p style="font-size: 30px;">사원을 선택하세요.</p>
-                    </div> -->
-                    <div class="mg-v-25">
+                    </div>
+                    <div id="info-view-show" class="mg-v-25" style="display: none;">
                         <jsp:include page="/resources/jsp/info_emp.jsp" flush="false" />
                         <div id="hr-emp-spec" class="mg-v-25">
                             <span class="f-20">경력사항</span>

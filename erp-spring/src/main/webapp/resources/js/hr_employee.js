@@ -35,6 +35,8 @@ function renderInfo() {
 			+ '<span class="w-30p">' + wh.work + '</span>'
 			+ '</li>';
 	}
+	document.getElementById('info-view-blank').style.display = 'none';
+	document.getElementById('info-view-show').style.display = 'block';
 }
 
 
