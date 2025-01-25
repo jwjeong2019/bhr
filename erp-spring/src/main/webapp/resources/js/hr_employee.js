@@ -1,24 +1,32 @@
 let empData = {};
-let mLiCnt = 0;
 const dialogReg = document.getElementById('hr-emp-dialog-register');
+let data = {};
+let regIdx = 0;
+const dialogMod = document.getElementById('hr-emp-dialog-modify');
+let mdata = {};
+let modIdx = 0;
 
+// list
 window.onClickEmpItem = function (item) {
 	empData = item;
-	mLiCnt = item.workHistory.length;
+	renderInfo();
+}
+
+function renderInfo() {
 	// 인적사항
-	const tb1 = document.getElementById('tb-emp');
-	const tds1 = tb1.getElementsByTagName('td');
-	tds1[2].innerText = item.department.criterion.name;
-	tds1[3].innerText = item.position;
-	tds1[6].innerText = item.name;
-	tds1[7].innerText = item.joinDate.join('-');
-	tds1[10].innerText = item.email;
-	tds1[11].innerText = item.phone;
+	const tb = document.getElementById('tb-emp');
+	const tds = tb.getElementsByTagName('td');
+	tds[2].innerText = empData.department.criterion.name;
+	tds[3].innerText = empData.position;
+	tds[6].innerText = empData.name;
+	tds[7].innerText = empData.joinDate.join('-');
+	tds[10].innerText = empData.email;
+	tds[11].innerText = empData.phone;
 	// 경력사항
 	const ul1 = document.getElementById('scroll-box-mini');
 	ul1.replaceChildren();
-	for (let i = 0; i < item.workHistory.length; i++) {
-		const wh = item.workHistory[i];
+	for (let i = 0; i < empData.workHistory.length; i++) {
+		const wh = empData.workHistory[i];
 		ul1.innerHTML += '<li class="container space">'
 			+ '<span class="w-30p">' + wh.term + '</span>'
 			+ '<span class="w-30p">' + wh.project + '</span>'
@@ -26,38 +34,11 @@ window.onClickEmpItem = function (item) {
 			+ '<span class="w-30p">' + wh.work + '</span>'
 			+ '</li>';
 	}
-	// 수정 인적사항
-	const tb = document.getElementById('tb-emp-mod');
-	const tbInputs = tb.getElementsByTagName('input');
-	tbInputs[0].value = item.code;
-	tbInputs[1].value = item.email;
-	tbInputs[3].value = item.nickname;
-	tbInputs[4].value = item.name;
-	tbInputs[5].value = item.phone;
-	tbInputs[6].value = item.birthday.join('-');
-	tbInputs[7].value = item.joinDate.join('-');
-	tbInputs[8].value = item.role;
-	// 수정 경력사항
-	const ul2 = document.getElementById('mod-work-hist-ul');
-	ul2.replaceChildren();
-	for (let i = 0; i < item.workHistory.length; i++) {
-		const wh = item.workHistory[i];
-		ul2.innerHTML += '<li id="mod-work-hist-li-' + (i + 1) + '" class="container space li-input mg-b-20">'
-			+ '<input type="text" placeholder="2024-01 ~ 2024-02" value="' + wh.term + '" onchange="onChangeModTerm(this,' + i + ')">'
-			+ '<input type="text" placeholder="ERP 리뉴얼" value="' + wh.project + '" onchange="onChangeModProject(this,' + i + ')">'
-			+ '<input type="text" placeholder="ERP 회사" value="' + wh.company + '" onchange="onChangeModCompany(this,' + i + ')">'
-			+ '<input type="text" placeholder="사무/보조" value="' + wh.work + '" onchange="onChangeModWork(this,' + i + ')">'
-			+ '</li>';
-	}
-	ul2.innerHTML += '<li class="container center-row" onclick="onClickModPlus()">➕</li>';
 }
-// list
 
 
 
 // register
-let data = {};
-data.reqWorkHistory = [];
 window.onChangeRegCode = function (e) {
 	data.reqCode = e.value;
 }
@@ -86,59 +67,75 @@ window.onChangeRegRole = function (e) {
 	data.reqRole = e.value;
 }
 
-let term = '', project = '', company = '', work = '';
-window.onChangeRegTerm = function (e) {
-	term = e.value;
-}
-window.onChangeRegProject = function (e) {
-	project = e.value;
-}
-window.onChangeRegCompany = function (e) {
-	company = e.value;
-}
-window.onChangeRegWork = function (e) {
-	work = e.value;
-}
 
-let liCnt = 1;
-window.onClickRegPlus = function () {
-	data.reqWorkHistory.push({ term, project, company, work });
-	term = ''; project = ''; company = ''; work = '';
-
-	const li = document.getElementById('reg-work-hist-li-' + liCnt);
-	const clone = li.cloneNode(true);
-	clone.id = 'reg-work-hist-li-' + ++liCnt;
-	const inputs = clone.children;
-	inputs[0].value = '';
-	inputs[1].value = '';
-	inputs[2].value = '';
-	inputs[3].value = '';
-	li.after(clone);
+window.onChangeRegTerm = function (e, i) {
+	console.log(data);
+	data.reqWorkHistory[i].term = e.value;
+}
+window.onChangeRegProject = function (e, i) {
+	data.reqWorkHistory[i].project = e.value;
+}
+window.onChangeRegCompany = function (e, i) {
+	data.reqWorkHistory[i].company = e.value;
+}
+window.onChangeRegWork = function (e, i) {
+	data.reqWorkHistory[i].work = e.value;
 }
 
 window.onClickRegister = function () {
+	data.reqWorkHistory = [];
+	data.reqWorkHistory.push({ term: '', project: '', company: '', work: '' });
 	dialogReg.showModal();
 }
+window.onClickRegPlus = function () {
+	data.reqWorkHistory.push({ term: '', project: '', company: '', work: '' });
+
+	const li = document.getElementById('reg-work-hist-li-' + regIdx);
+	const nextli = document.createElement('li');
+	nextli.innerHTML = `
+		<li id="reg-work-hist-li-${++regIdx}" class="container space li-input mg-b-20">
+	        <input type="text" placeholder="2024-01 ~ 2024-02" onchange="onChangeRegTerm(this, ${regIdx})">
+	        <input type="text" placeholder="ERP 리뉴얼"  onchange="onChangeRegProject(this, ${regIdx})">
+	        <input type="text" placeholder="ERP 회사"  onchange="onChangeRegCompany(this, ${regIdx})">
+	        <input type="text" placeholder="사무/보조"  onchange="onChangeRegWork(this, ${regIdx})">
+	    </li>
+	`;
+	li.after(nextli);
+}
 window.onClickRegComplete = function () {
-	if (term != '' || project != '' || company != '' || work != '') {
-		data.reqWorkHistory.push({ term, project, company, work });
-	}
 	console.log(data);
 	document.getElementById('reg-data').value = JSON.stringify(data);
-	dialogReg.close();
+	if (checkRegister()) dialogReg.close();
 
 	const form = document.getElementById('form-reg');
 	form.action = 'hrEmployeeRegister.do';
 	form.method = 'post';
 	form.submit();
 }
+function checkRegister() {
+	let isChecked = false;
+	console.log(data);
+	if (!data.reqCode) {
+		alert('코드를 입력해주세요');
+		return isChecked;
+	}
+	if (!data.reqEmail) {
+		alert('이메일을 입력해주세요');
+		return isChecked;
+	}
+	if (!data.reqPassword) {
+		alert('비밀번호를 입력해주세요');
+		return isChecked;
+	}
+	return !isChecked;
+}
 window.onClickRegCancel = function () {
+	data = {};
 	const tb = document.getElementById('tb-emp-reg');
 	const inputs = tb.getElementsByTagName('input');
 	for (let i = 0; i < inputs.length; i++) {
 		inputs[i].value = '';
 	}
-
 	const ul = document.getElementById('reg-work-hist-ul');
 	const ulInputs = ul.getElementsByTagName('input');
 	for (let i = 0; i < ulInputs.length; i++) {
@@ -148,11 +145,6 @@ window.onClickRegCancel = function () {
 }
 
 // modify
-const dialogMod = document.getElementById('hr-emp-dialog-modify');
-
-let mdata = {};
-//mdata.reqWorkHistory = [];
-//mdata.reqWorkHistoryReg = [];
 window.onChangeModCode = function (e) {
 	mdata.reqCode = e.value;
 }
@@ -181,7 +173,7 @@ window.onChangeModRole = function (e) {
 	mdata.reqRole = e.value;
 }
 
-let mTerm = '', mProject = '', mCompany = '', mWork = '';
+
 window.onChangeModTerm = function (e, i) {
 	console.log(e);
 	mdata.reqWorkHistory[i].term = e.value;
@@ -209,21 +201,6 @@ window.onChangeModWorkReg = function (e, i) {
 	mdata.reqWorkHistoryReg[i].work = e.value;
 }
 
-let mc = 0;
-//let mLiCnt = empData.workHistory?.length;
-window.onClickModPlus = function () {
-	mdata.reqWorkHistoryReg.push({ term: '', project: '', company: '', work: '' });
-
-	const li = document.getElementById('mod-work-hist-li-' + mLiCnt);
-	const nextli = document.createElement('li');
-	nextli.id = 'mod-work-hist-li-' + ++mLiCnt;
-	nextli.className = 'container space li-input mg-b-20';
-	nextli.innerHTML = '<input type="text" placeholder="2024-01 ~ 2024-02" onchange="onChangeModTermReg(this,' + mc + ')">'
-		+ '<input type="text" placeholder="ERP 리뉴얼" onchange="onChangeModProjectReg(this,' + mc + ')">'
-		+ '<input type="text" placeholder="ERP 회사" onchange="onChangeModCompanyReg(this,' + mc + ')">'
-		+ '<input type="text" placeholder="사무/보조" onchange="onChangeModWorkReg(this,' + mc++ + ')">';
-	li.after(nextli);
-}
 
 window.onClickModify = function () {
 	mdata = {
@@ -241,7 +218,55 @@ window.onClickModify = function () {
 		reqWorkHistory: empData.workHistory,
 		reqWorkHistoryReg: []
 	};
+	console.log(mdata);
+	modIdx = empData.workHistory.length - 1;
+	renderDialogMod();
 	dialogMod.showModal();
+}
+
+function renderDialogMod() {
+	// 수정 인적사항
+	const tb = document.getElementById('tb-emp-mod');
+	const inputs = tb.getElementsByTagName('input');
+	inputs[0].value = empData.code;
+	inputs[1].value = empData.email;
+	inputs[3].value = empData.nickname;
+	inputs[4].value = empData.name;
+	inputs[5].value = empData.phone;
+	inputs[6].value = empData.birthday.join('-');
+	inputs[7].value = empData.joinDate.join('-');
+	inputs[8].value = empData.role;
+	// 수정 경력사항
+	const ul = document.getElementById('mod-work-hist-ul');
+	ul.replaceChildren();
+	for (let i = 0; i < mdata.reqWorkHistory.length; i++) {
+		const wh = mdata.reqWorkHistory[i];
+		ul.innerHTML += `
+				<li id="mod-work-hist-li-${i}" class="container space li-input mg-b-20">
+			        <input type="text" placeholder="2024-01 ~ 2024-02" value="${wh.term}" onchange="onChangeModTerm(this, ${i})">
+			        <input type="text" placeholder="ERP 리뉴얼" value="${wh.project}" onchange="onChangeModProject(this, ${i})">
+			        <input type="text" placeholder="ERP 회사" value="${wh.company}" onchange="onChangeModCompany(this, ${i})">
+			        <input type="text" placeholder="사무/보조" value="${wh.work}" onchange="onChangeModWork(this, ${i})">
+			    </li>
+			`;
+	}
+	ul.innerHTML += '<li class="container center-row" onclick="onClickModPlus()">➕</li>';
+}
+window.onClickModPlus = function () {
+	mdata.reqWorkHistoryReg.push({ term: '', project: '', company: '', work: '' });
+	const modRegIdx = mdata.reqWorkHistoryReg.length - 1;
+
+	const li = document.getElementById('mod-work-hist-li-' + modIdx++);
+	const nextli = document.createElement('li');
+	nextli.id = `mod-work-hist-li-${modIdx}`;
+	nextli.className = `container space li-input mg-b-20`;
+	nextli.innerHTML = `
+        <input type="text" placeholder="2024-01 ~ 2024-02" onchange="onChangeModTermReg(this, ${modRegIdx})">
+        <input type="text" placeholder="ERP 리뉴얼"  onchange="onChangeModProjectReg(this, ${modRegIdx})">
+        <input type="text" placeholder="ERP 회사"  onchange="onChangeModCompanyReg(this, ${modRegIdx})">
+        <input type="text" placeholder="사무/보조"  onchange="onChangeModWorkReg(this, ${modRegIdx})">
+	`;
+	li.after(nextli);
 }
 window.onClickModComplete = function () {
 	console.log(mdata);

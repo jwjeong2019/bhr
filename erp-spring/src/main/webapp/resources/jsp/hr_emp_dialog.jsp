@@ -89,11 +89,11 @@
                 <span class="w-30p">업무</span>
             </div>
             <ul id="<%=typeSL %>-work-hist-ul" style="list-style: none; padding-left: 0px;">
-                <li id="<%=typeSL %>-work-hist-li-1" class="container space li-input mg-b-20">
-                    <input type="text" placeholder="2024-01 ~ 2024-02" onchange="onChange<%=typeS %>Term(this)">
-                    <input type="text" placeholder="ERP 리뉴얼"  onchange="onChange<%=typeS %>Project(this)">
-                    <input type="text" placeholder="ERP 회사"  onchange="onChange<%=typeS %>Company(this)">
-                    <input type="text" placeholder="사무/보조"  onchange="onChange<%=typeS %>Work(this)">
+                <li id="<%=typeSL %>-work-hist-li-0" class="container space li-input mg-b-20">
+                    <input type="text" placeholder="2024-01 ~ 2024-02" onchange="onChange<%=typeS %>Term(this, 0)">
+                    <input type="text" placeholder="ERP 리뉴얼"  onchange="onChange<%=typeS %>Project(this, 0)">
+                    <input type="text" placeholder="ERP 회사"  onchange="onChange<%=typeS %>Company(this, 0)">
+                    <input type="text" placeholder="사무/보조"  onchange="onChange<%=typeS %>Work(this, 0)">
                 </li>
                 <li class="container center-row" onclick="onClick<%=typeS %>Plus()">
                     ➕
