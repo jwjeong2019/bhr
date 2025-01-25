@@ -13,16 +13,6 @@
 	String msg = (String) request.getAttribute("msg");
 %>
 <%!
-	public String convertToJson(CriterionDto c) throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.registerModule(new JavaTimeModule());
-		return mapper.writeValueAsString(c);
-	}
-	public String convertToJson(DepartmentDto d) throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.registerModule(new JavaTimeModule());
-		return mapper.writeValueAsString(d);
-	}
 	public String convertToJson(EmployeeDto e) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new JavaTimeModule());

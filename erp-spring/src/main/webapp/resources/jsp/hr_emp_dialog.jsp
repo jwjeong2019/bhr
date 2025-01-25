@@ -24,10 +24,14 @@
             <table id="tb-emp-<%=typeSL %>" class="table-input">
             	<tr>
                     <td>코드</td>
+                    <td>직위</td>
                 </tr>
                 <tr>
                     <td class="f-20">
                         <input type="text" placeholder="코드" onchange="onChange<%=typeS %>Code(this)">
+                    </td>
+                    <td class="f-20">
+                        <input type="text" placeholder="직위" onchange="onChange<%=typeS %>Position(this)">
                     </td>
                 </tr>
                 <tr>

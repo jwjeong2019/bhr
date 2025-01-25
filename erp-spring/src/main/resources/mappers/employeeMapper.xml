@@ -66,8 +66,8 @@
   </resultMap>
   
   <insert id="insertEmployee" parameterType="employeeDto" useGeneratedKeys="true" keyProperty="id">
-  	insert into employee (code, email, password, nickname, name, phone, birthday, join_date, role)
-  	values (#{code}, #{email}, #{password}, #{nickname}, #{name}, #{phone}, #{birthday}, #{joinDate}, #{role})
+  	insert into employee (code, email, password, nickname, name, phone, position, birthday, join_date, role)
+  	values (#{code}, #{email}, #{password}, #{nickname}, #{name}, #{phone}, #{position}, #{birthday}, #{joinDate}, #{role})
   </insert>
   
   <update id="updateEmployee" parameterType="employeeDto">
@@ -90,6 +90,15 @@
   		</if>
   		<if test='position != null and !position.equals("")'>
   			position = #{position},
+  		</if>
+  		<if test='birthday != null and !birthday.equals("")'>
+  			birthday = #{birthday},
+  		</if>
+  		<if test='joinDate != null and !joinDate.equals("")'>
+  			join_date = #{joinDate},
+  		</if>
+  		<if test='role != null and !role.equals("")'>
+  			role = #{role},
   		</if>
   		dep_id = #{depId},
   	</set>

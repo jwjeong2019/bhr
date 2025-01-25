@@ -54,6 +54,7 @@ public class HREmpServiceImpl implements HREmpService {
 		dtoIns.setNickname(dtoReq.getReqNickname());
 		dtoIns.setName(dtoReq.getReqName());
 		dtoIns.setPhone(dtoReq.getReqPhone());
+		dtoIns.setPosition(dtoReq.getReqPosition());
 		dtoIns.setBirthday(dtoReq.getReqBirthday());
 		dtoIns.setJoinDate(dtoReq.getReqJoinDate());
 		dtoIns.setRole(dtoReq.getReqRole());
@@ -82,6 +83,7 @@ public class HREmpServiceImpl implements HREmpService {
 		dtoEmpUpd.setNickname(dtoReq.getReqNickname());
 		dtoEmpUpd.setName(dtoReq.getReqName());
 		dtoEmpUpd.setPhone(dtoReq.getReqPhone());
+		dtoEmpUpd.setPosition(dtoReq.getReqPosition());
 		dtoEmpUpd.setBirthday(dtoReq.getReqBirthday());
 		dtoEmpUpd.setJoinDate(dtoReq.getReqJoinDate());
 		dtoEmpUpd.setRole(dtoReq.getReqRole());

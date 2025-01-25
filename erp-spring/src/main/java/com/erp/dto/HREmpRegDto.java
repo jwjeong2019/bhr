@@ -13,7 +13,7 @@ public class HREmpRegDto {
 	private String reqName;
 	private LocalDate reqBirthday;
 	private String reqPhone;
-//	private String position;
+	private String reqPosition;
 	private String reqRole;
 	private LocalDate reqJoinDate;
 //	private Integer depId;
@@ -63,6 +63,12 @@ public class HREmpRegDto {
 	}
 	public void setReqPhone(String reqPhone) {
 		this.reqPhone = reqPhone;
+	}
+	public String getReqPosition() {
+		return reqPosition;
+	}
+	public void setReqPosition(String reqPosition) {
+		this.reqPosition = reqPosition;
 	}
 	public String getReqRole() {
 		return reqRole;

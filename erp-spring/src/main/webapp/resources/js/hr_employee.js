@@ -8,6 +8,7 @@ let modIdx = 0;
 
 // list
 window.onClickEmpItem = function (item) {
+	console.log(item);
 	empData = item;
 	renderInfo();
 }
@@ -41,6 +42,9 @@ function renderInfo() {
 // register
 window.onChangeRegCode = function (e) {
 	data.reqCode = e.value;
+}
+window.onChangeRegPosition = function (e) {
+	data.reqPosition = e.value;
 }
 window.onChangeRegEmail = function (e) {
 	data.reqEmail = e.value;
@@ -148,6 +152,9 @@ window.onClickRegCancel = function () {
 window.onChangeModCode = function (e) {
 	mdata.reqCode = e.value;
 }
+window.onChangeModPosition = function (e) {
+	mdata.reqPosition = e.value;
+}
 window.onChangeModEmail = function (e) {
 	mdata.reqEmail = e.value;
 }
@@ -206,6 +213,7 @@ window.onClickModify = function () {
 	mdata = {
 		reqId: empData.id,
 		reqCode: empData.code,
+		reqPosition: empData.position,
 		reqEmail: empData.email,
 		reqPassword: empData.password,
 		reqNickname: empData.nickname,
@@ -229,13 +237,14 @@ function renderDialogMod() {
 	const tb = document.getElementById('tb-emp-mod');
 	const inputs = tb.getElementsByTagName('input');
 	inputs[0].value = empData.code;
-	inputs[1].value = empData.email;
-	inputs[3].value = empData.nickname;
-	inputs[4].value = empData.name;
-	inputs[5].value = empData.phone;
-	inputs[6].value = empData.birthday.join('-');
-	inputs[7].value = empData.joinDate.join('-');
-	inputs[8].value = empData.role;
+	inputs[1].value = empData.position;
+	inputs[2].value = empData.email;
+	inputs[4].value = empData.nickname;
+	inputs[5].value = empData.name;
+	inputs[6].value = empData.phone;
+	inputs[7].value = empData.birthday.join('-');
+	inputs[8].value = empData.joinDate.join('-');
+	inputs[9].value = empData.role;
 	// 수정 경력사항
 	const ul = document.getElementById('mod-work-hist-ul');
 	ul.replaceChildren();
