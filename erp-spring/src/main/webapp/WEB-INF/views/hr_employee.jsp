@@ -28,6 +28,20 @@
 		mapper.registerModule(new JavaTimeModule());
 		return mapper.writeValueAsString(e);
 	}
+	public String getDepartmentName(EmployeeDto e) {
+		DepartmentDto d = e.getDepartment();
+		if (d == null) {
+			return "-";
+		}
+		return d.getCriterion().getName();
+	}
+	public String getPosition(EmployeeDto e) {
+		String pos = e.getPosition();
+		if (pos == null) {
+			return "-";
+		}
+		return pos;
+	}
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -64,8 +78,8 @@
                         	<% for (int i = 0; i < list.size(); i++) { %>
 	                            <li class="container space" onclick='onClickEmpItem(<%=convertToJson(list.get(i))%>)'>
 					                <span class="f-20 w-30p"><%=list.get(i).getCode() %></span>
-					                <span class="f-20 w-30p"><%="-" %></span>
-					                <span class="f-20 w-30p"><%=list.get(i).getPosition() %></span>
+					                <span class="f-20 w-30p"><%=getDepartmentName(list.get(i)) %></span>
+					                <span class="f-20 w-30p"><%=getPosition(list.get(i)) %></span>
 					                <span class="f-20 w-30p"><%=list.get(i).getName() %></span>
 					                <span class="f-20 w-30p"><%=list.get(i).getJoinDate() %></span>
 					            </li>                            	
