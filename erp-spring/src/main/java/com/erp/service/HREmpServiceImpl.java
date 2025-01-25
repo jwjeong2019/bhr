@@ -96,10 +96,13 @@ public class HREmpServiceImpl implements HREmpService {
 			}
 		});
 		
+		int countWorkHisIns = 0;
 		WorkHistoryInsDto dtoWorkHisIns = new WorkHistoryInsDto();
-		dtoWorkHisIns.setEmpId(dtoReq.getReqId());
-		dtoWorkHisIns.setList(dtoReq.getReqWorkHistoryReg());
-		int countWorkHisIns = workHistoryDao.insert(dtoWorkHisIns);
+		if (!dtoReq.getReqWorkHistoryReg().isEmpty()) {
+			dtoWorkHisIns.setEmpId(dtoReq.getReqId());
+			dtoWorkHisIns.setList(dtoReq.getReqWorkHistoryReg());			
+			countWorkHisIns = workHistoryDao.insert(dtoWorkHisIns);
+		}
 		
 		if (countEmpUpd > 0 && countWorkHisIns > 0) dtoRes.setSuccess(true);
 		dtoRes.setResRedirectUrl("redirect:/hrEmployee.do");
