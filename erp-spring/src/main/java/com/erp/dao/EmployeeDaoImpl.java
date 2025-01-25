@@ -31,10 +31,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
+	public int insert(EmployeeDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE + ".insertEmployee", dto);
+	}
+	
+	@Override
 	public int update(EmployeeDto dto) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(NAMESPACE + ".updateEmployee", dto);
 	}
 
-
+	@Override
+	public int delete(EmployeeDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE + ".deleteEmployee", dto);
+	}
+	
 }
