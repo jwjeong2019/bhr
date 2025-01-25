@@ -1,4 +1,3 @@
-<%@page import="com.fasterxml.jackson.databind.ObjectMapper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
@@ -36,37 +35,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERP 사원 관리</title>
-    <link rel="stylesheet" href="<%=path%>/resources/css/common/layout.css">
-    <link rel="stylesheet" href="<%=path%>/resources/css/common/font.css">
-    <link rel="stylesheet" href="<%=path%>/resources/css/common/component.css">
-    <link rel="stylesheet" href="<%=path%>/resources/css/common/origin.css">
+    <jsp:include page="/resources/jsp/linkes.jsp" />
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Gowun+Dodum&family=Hi+Melody&display=swap');
     </style>
-    <!-- <script type="module" src="/js/scroll_box_couple.js"></script> -->
-    <%-- <script type="module" src="<%=path%>/resources/js/hr_employee.js"></script> --%>
-    <script type="module" src="<%=path%>/resources/js/component/side_menu.js"></script>
 </head>
 <body>
-    <header class="nav pos-fixed top-0 left-0 w-100vw bg-white zi-1">
-        <nav class="container space">
-            <form action="main.do" method="get">
-            	<button class="b-none bg-none pd-0">
-		            <img id="logo" url="/html/main.html" src="https://img.freepik.com/premium-vector/erp-vector-icon-web_116137-3113.jpg?w=740">
-            	</button>
-            </form>
-            <div class="container w-25vw space center mg-r-70">
-                <div class="f-20" id="greet">${name}님 반갑습니다.</div>
-                <form action="logoutAction.do" method="post">
-	                <button id="logout" class="btn btn-primary" type="submit">로그아웃</button>
-                </form>
-            </div>
-        </nav>
-    </header>
+    <jsp:include page="/resources/jsp/header.jsp" flush="false" />
     <section class="container space pd-100-30">
-        <aside id="side-menu">
-            <!-- load side_menu.js -->
-        </aside>
+        <jsp:include page="/resources/jsp/side_menu.jsp" flush="false" />
         <main class="mg-l-30 w-80p">
             <header>
                 <h1>사원 관리</h1>
@@ -95,7 +72,10 @@
                         </ul>
                     </div>
                     <div class="container center-row">
-                    	<button class="btn btn-primary" onclick="onClickRegister()">사원 추가하기</button>
+                    	<jsp:include page="/resources/jsp/btn_primary.jsp" flush="false">
+                    		<jsp:param value="사원 추가하기" name="title" />
+                    		<jsp:param value="onClickRegister()" name="onClick"/>
+                    	</jsp:include>
                     </div>
                 </article>
                 <article class="card w-40p">
@@ -105,39 +85,7 @@
                         <p style="font-size: 30px;">사원을 선택하세요.</p>
                     </div> -->
                     <div class="mg-v-25">
-                        <div class="container">
-                            <div id="hr-emp-info">
-                                <table id="tb-emp">
-                                    <tr>
-                                        <td>부서</td>
-                                        <td>직위</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="f-20">인사팀</td>
-                                        <td class="f-20">대리</td>
-                                    </tr>
-                                    <tr>
-                                        <td>이름</td>
-                                        <td>입사일</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="f-20">강해린</td>
-                                        <td class="f-20">2024-03-10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>이메일</td>
-                                        <td>연락처</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="f-20">khr@erp.kr</td>
-                                        <td class="f-20">010-1234-5678</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="shadow">
-                                <img src="https://cdn.hankyung.com/photo/201904/01.19372617.1.jpg" width="120" height="150">
-                            </div>
-                        </div>
+                        <jsp:include page="/resources/jsp/info_emp.jsp" flush="false" />
                         <div id="hr-emp-spec" class="mg-v-25">
                             <span class="f-20">경력사항</span>
                             <div class="container space mg-v-25">
@@ -156,8 +104,18 @@
                             </ul>
                         </div>
                         <div id="hr-emp-info-modify" class="right">
-                            <button id="hr-emp-info-btn-modify" class="btn btn-primary" onclick="onClickModify()">수정</button>
-                            <button id="hr-emp-info-btn-delete" class="btn btn-danger mg-l-30" onclick="onClickDelete()">삭제</button>
+                        	<jsp:include page="/resources/jsp/btn_primary.jsp">
+                        		<jsp:param value="hr-emp-info-btn-modify" name="id"/>
+                        		<jsp:param value="수정" name="title"/>
+                        		<jsp:param value="onClickModify()" name="onClick"/>
+                        	</jsp:include>
+                        	<div class="d-inline-block mg-l-30">
+                        		<jsp:include page="/resources/jsp/btn_danger.jsp">
+	                        		<jsp:param value="hr-emp-info-btn-delete" name="id"/>
+	                        		<jsp:param value="삭제" name="title"/>
+	                        		<jsp:param value="onClickDelete()" name="onClick"/>
+	                        	</jsp:include>
+                        	</div>
                         </div>
                     </div>
                 </article>
@@ -165,205 +123,18 @@
         </main>
     </section>
     <!-- 사원 추가하기 Dialog -->
-    <dialog id="hr-emp-dialog-register">
-        <div id="hr-emp-dialog-register-header">
-            <span class="f-30">사원 정보 입력</span>
-        </div>
-        <div id="hr-emp-dialog-register-content" class="pd-10 h-400" style="overflow-y: auto;">
-            <div id="hr-emp-dialog-register-content-info">
-                <div id="hr-emp-dialog-register-content-info-profile" class="shadow d-inline-block">
-                    <img src="https://cdn.hankyung.com/photo/201904/01.19372617.1.jpg" width="120" height="150">
-                </div>
-                <div class="mg-v-20">
-                    <label for="file">💾</label>
-                    <input type="file" id="file" hidden>
-                    <span>증명사진.png</span>
-                </div>
-                <table id="tb-emp-reg" class="table-input">
-                	<tr>
-                        <td>코드</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="text" placeholder="코드" onchange="onChangeRegCode(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>이메일</td>
-                        <td>비밀번호</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="email" placeholder="이메일" onchange="onChangeRegEmail(this)">
-                        </td>
-                        <td class="f-20">
-                            <input type="password" placeholder="비밀번호" onchange="onChangeRegPassword(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>닉네임</td>
-                        <td>이름</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="text" placeholder="닉네임" onchange="onChangeRegNickname(this)">
-                        </td>
-                        <td class="f-20">
-                            <input type="text" placeholder="이름" onchange="onChangeRegName(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>연락처</td>
-                        <td>생일</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="text" placeholder="연락처" onchange="onChangeRegPhone(this)">
-                        </td>
-                        <td class="f-20">
-                            <input type="text" placeholder="생일" onchange="onChangeRegBirthday(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>입사일</td>
-                        <td>권한</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="text" placeholder="입사일" onchange="onChangeRegJoinDate(this)">
-                        </td>
-                        <td class="f-20">
-                            <input type="text" placeholder="권한" onchange="onChangeRegRole(this)">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div id="hr-emp-dialog-register-content-info-spec" class="mg-v-25">
-                <span class="f-20">경력사항</span>
-                <div class="container space mg-v-20">
-                    <span class="w-30p">기간</span>
-                    <span class="w-30p">프로젝트</span>
-                    <span class="w-30p">회사</span>
-                    <span class="w-30p">업무</span>
-                </div>
-                <ul id="reg-work-hist-ul" style="list-style: none; padding-left: 0px;">
-                    <li id="reg-work-hist-li-1" class="container space li-input mg-b-20">
-                        <input type="text" placeholder="2024-01 ~ 2024-02" onchange="onChangeRegTerm(this)">
-                        <input type="text" placeholder="ERP 리뉴얼"  onchange="onChangeRegProject(this)">
-                        <input type="text" placeholder="ERP 회사"  onchange="onChangeRegCompany(this)">
-                        <input type="text" placeholder="사무/보조"  onchange="onChangeRegWork(this)">
-                    </li>
-                    <li class="container center-row" onclick="onClickRegPlus()">
-                        ➕
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="container mg-v-25 space">
-            <button id="dialog-register-btn-complete" class="btn btn-success" onclick="onClickRegComplete()">완료</button>
-            <button id="dialog-register-btn-cancel" class="btn btn-primary" onclick="onClickRegCancel()">취소</button>
-        </div>
-    </dialog>
+    <jsp:include page="/resources/jsp/hr_emp_dialog.jsp" flush="false">
+    	<jsp:param value="register" name="typeF"/>
+    	<jsp:param value="Reg" name="typeS"/>
+    	<jsp:param value="사원 정보 입력" name="title"/>
+    </jsp:include>
     <!-- 사원 수정하기 Dialog -->
-    <dialog id="hr-emp-dialog-modify">
-        <div id="hr-emp-dialog-modify-header">
-            <span class="f-30">사원 정보 수정</span>
-        </div>
-        <div id="hr-emp-dialog-modify-content" class="pd-10 h-400" style="overflow-y: auto;">
-            <div id="hr-emp-dialog-modify-content-info">
-                <div id="hr-emp-dialog-modify-content-info-profile" class="shadow d-inline-block">
-                    <img src="https://cdn.hankyung.com/photo/201904/01.19372617.1.jpg" width="120" height="150">
-                </div>
-                <div class="mg-v-20">
-                    <label for="file">💾</label>
-                    <input type="file" id="file" hidden>
-                    <span>증명사진.png</span>
-                </div>
-                <table id="tb-emp-mod" class="table-input">
-                	<tr>
-                        <td>코드</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="text" placeholder="코드" onchange="onChangeModCode(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>이메일</td>
-                        <td>비밀번호</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="email" placeholder="이메일" onchange="onChangeModEmail(this)">
-                        </td>
-                        <td class="f-20">
-                            <input type="password" placeholder="비밀번호" onchange="onChangeModPassword(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>닉네임</td>
-                        <td>이름</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="text" placeholder="닉네임" onchange="onChangeModNickname(this)">
-                        </td>
-                        <td class="f-20">
-                            <input type="text" placeholder="이름" onchange="onChangeModName(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>연락처</td>
-                        <td>생일</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="text" placeholder="연락처" onchange="onChangeModPhone(this)">
-                        </td>
-                        <td class="f-20">
-                            <input type="text" placeholder="생일" onchange="onChangeModBirthday(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>입사일</td>
-                        <td>권한</td>
-                    </tr>
-                    <tr>
-                        <td class="f-20">
-                            <input type="text" placeholder="입사일" onchange="onChangeModJoinDate(this)">
-                        </td>
-                        <td class="f-20">
-                            <input type="text" placeholder="권한" onchange="onChangeModRole(this)">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div id="hr-emp-dialog-modify-content-info-spec" class="mg-v-25">
-                <span class="f-20">경력사항</span>
-                <div class="container space mg-v-20">
-                    <span class="w-30p">기간</span>
-                    <span class="w-30p">프로젝트</span>
-                    <span class="w-30p">회사</span>
-                    <span class="w-30p">업무</span>
-                </div>
-                <ul id="mod-work-hist-ul" style="list-style: none; padding-left: 0px;">
-                    <li id="mod-work-hist-li-1" class="container space li-input mg-b-20">
-                        <input type="text" placeholder="2024-01 ~ 2024-02" onchange="onChangeModTerm(this)">
-                        <input type="text" placeholder="ERP 리뉴얼"  onchange="onChangeModProject(this)">
-                        <input type="text" placeholder="ERP 회사"  onchange="onChangeModCompany(this)">
-                        <input type="text" placeholder="사무/보조"  onchange="onChangeModWork(this)">
-                    </li>
-                    <li class="container center-row" onclick="onClickModPlus()">
-                        ➕
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="container mg-v-25 space">
-            <button id="dialog-modify-btn-complete" class="btn btn-success" onclick="onClickModComplete()">완료</button>
-            <button id="dialog-modify-btn-cancel" class="btn btn-primary" onclick="onClickModCancel()">취소</button>
-        </div>
-    </dialog>
+    <jsp:include page="/resources/jsp/hr_emp_dialog.jsp" flush="false">
+    	<jsp:param value="modify" name="typeF"/>
+    	<jsp:param value="Mod" name="typeS"/>
+    	<jsp:param value="사원 정보 수정" name="title"/>
+    </jsp:include>
+    
     <dialog id="hr-emp-dialog-delete">
         <span class="f-30">사원을 삭제하시겠습니까?</span>
         <div class="container mg-v-25 space w-70p">
