@@ -38,6 +38,11 @@ public class CriterionDto {
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Override
+	public String toString() {
+		return "CriterionDto [id=" + id + ", code=" + code + ", type=" + type + ", status=" + status + ", name=" + name
+				+ "]";
+	}
 	
 	
 	

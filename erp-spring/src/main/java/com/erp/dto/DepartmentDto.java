@@ -33,4 +33,9 @@ public class DepartmentDto {
 		this.criterion = criterion;
 	}
 
+	@Override
+	public String toString() {
+		return "DepartmentDto [id=" + id + ", criterion=" + criterion + "]";
+	}
+
 }

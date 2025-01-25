@@ -69,4 +69,10 @@ public class CriterionVO {
 		return dto;
 	}
 
+	@Override
+	public String toString() {
+		return "CriterionVO [id=" + id + ", code=" + code + ", type=" + type + ", status=" + status + ", name=" + name
+				+ "]";
+	}
+
 }

@@ -169,5 +169,13 @@ public class EmployeeVO {
 	public void setWorkHistory(List<WorkHistoryVO> workHistory) {
 		this.workHistory = workHistory;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeVO [id=" + id + ", code=" + code + ", email=" + email + ", password=" + password + ", nickname="
+				+ nickname + ", name=" + name + ", birthday=" + birthday + ", phone=" + phone + ", position=" + position
+				+ ", role=" + role + ", joinDate=" + joinDate + ", department=" + department + ", workHistory="
+				+ workHistory + "]";
+	}
 	
 }

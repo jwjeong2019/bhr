@@ -161,5 +161,13 @@ public class EmployeeDto {
 	public void setWorkHistory(List<WorkHistoryDto> workHistory) {
 		this.workHistory = workHistory;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeDto [id=" + id + ", code=" + code + ", email=" + email + ", password=" + password
+				+ ", nickname=" + nickname + ", name=" + name + ", birthday=" + birthday + ", phone=" + phone
+				+ ", position=" + position + ", role=" + role + ", joinDate=" + joinDate + ", depId=" + depId
+				+ ", department=" + department + ", workHistory=" + workHistory + ", sqlNullDep=" + sqlNullDep + "]";
+	}
 	
 }

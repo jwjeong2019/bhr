@@ -38,4 +38,9 @@ public class DepartmentVO {
 		return dto;
 	}
 
+	@Override
+	public String toString() {
+		return "DepartmentVO [id=" + id + ", criterion=" + criterion + "]";
+	}
+
 }
