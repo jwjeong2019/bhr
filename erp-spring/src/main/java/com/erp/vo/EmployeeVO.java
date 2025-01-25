@@ -1,6 +1,8 @@
 package com.erp.vo;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.erp.dto.EmployeeDto;
 
@@ -18,6 +20,7 @@ public class EmployeeVO {
 	private String role;
 	private LocalDate joinDate;
 	private DepartmentVO department;
+	private List<WorkHistoryVO> workHistory;
 	
 	
 	
@@ -57,6 +60,9 @@ public class EmployeeVO {
 		dto.setRole(role);
 		dto.setJoinDate(joinDate);
 		dto.setDepartment(department.toDto());
+		dto.setWorkHistory(workHistory.stream()
+				.map(WorkHistoryVO::toDto)
+				.collect(Collectors.toList()));
 		return dto;
 	}
 
@@ -154,6 +160,14 @@ public class EmployeeVO {
 
 	public void setDepartment(DepartmentVO department) {
 		this.department = department;
+	}
+
+	public List<WorkHistoryVO> getWorkHistory() {
+		return workHistory;
+	}
+
+	public void setWorkHistory(List<WorkHistoryVO> workHistory) {
+		this.workHistory = workHistory;
 	}
 	
 }
