@@ -11,11 +11,16 @@
   	<typeAlias type="com.erp.vo.EmployeeVO" alias="employeeVO"/>
   	<typeAlias type="com.erp.vo.CriterionVO" alias="criterionVO"/>
   	<typeAlias type="com.erp.vo.DepartmentVO" alias="departmentVO"/>
+  	<typeAlias type="com.erp.vo.WorkHistoryVO" alias="workHistoryVO"/>
   	
   	<typeAlias type="com.erp.dto.AdminDto" alias="adminDto"/>
   	<typeAlias type="com.erp.dto.EmployeeDto" alias="employeeDto"/>
   	<typeAlias type="com.erp.dto.CriterionDto" alias="criterionDto"/>
   	<typeAlias type="com.erp.dto.DepartmentDto" alias="departmentDto"/>
+  	<typeAlias type="com.erp.dto.WorkHistoryDto" alias="workHistoryDto"/>
+  	
+  	<typeAlias type="com.erp.dto.WorkHistoryInsDto" alias="workHistoryInsDto"/>
+  	<typeAlias type="com.erp.dto.WorkHistoryDelDto" alias="workHistoryDelDto"/>
   </typeAliases>
   
 </configuration>
