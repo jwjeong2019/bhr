@@ -1,6 +1,7 @@
 package com.erp.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class EmployeeDto {
 	
@@ -18,6 +19,7 @@ public class EmployeeDto {
 	private Integer depId;
 	
 	private DepartmentDto department;
+	private List<WorkHistoryDto> workHistory;
 	private String sqlNullDep;
 	
 	
@@ -150,6 +152,14 @@ public class EmployeeDto {
 
 	public void setSqlNullDep(String sqlNullDep) {
 		this.sqlNullDep = sqlNullDep;
+	}
+
+	public List<WorkHistoryDto> getWorkHistory() {
+		return workHistory;
+	}
+
+	public void setWorkHistory(List<WorkHistoryDto> workHistory) {
+		this.workHistory = workHistory;
 	}
 	
 }
