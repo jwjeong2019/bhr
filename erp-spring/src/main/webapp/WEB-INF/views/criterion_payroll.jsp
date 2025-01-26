@@ -9,7 +9,7 @@
 %>
 <%!
 	public String convertToJson(CriterionDto dto) {
-		return String.format("{'code': '%s', 'type': '%s', 'status': '%c', 'name': '%s'}", dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
+		return String.format("{'id': '%s', 'code': '%s', 'type': '%s', 'status': '%c', 'name': '%s'}", dto.getId(), dto.getCode(), dto.getType(), dto.getStatus(), dto.getName());
 	}
 %>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
     </style>
     <script type="module" src="<%=path%>/resources/js/scroll_box.js"></script>
     <script type="module" src="<%=path%>/resources/js/component/side_menu.js"></script>
-    <script type="module" src="<%=path%>/resources/js/criterion_payroll.js"></script>
+    <script type="module" src="/resources/js/criterion_payroll.js"></script>
 </head>
 <body>
     <header class="nav pos-fixed top-0 left-0 w-100vw bg-white zi-1">
@@ -108,6 +108,7 @@
         </div>
         <span class="f-30">급여 정보</span>
         <form id="info-form">
+        	<input id="info-input-id" type="text" name="id" hidden>
 	        <div class="input mg-v-25">
 	            <span class="d-block f-20">코드</span>
 	            <input id="info-input-code" type="text" name="code">
@@ -131,29 +132,4 @@
         </form>
     </dialog>
 </body>
-<script>
-	const infoForm = document.getElementById('info-form');
-	const dialog = document.querySelector('dialog');
-	function onClickItem(item) {
-		console.log(item);
-		dialog.showModal();
-		document.getElementById('info-input-code').value = item.code;
-		document.getElementById('info-input-type').value = item.type;
-		document.getElementById('info-input-status').value = item.status;
-		document.getElementById('info-input-name').value = item.name;
-	}
-	function onClickClose() {
-		dialog.close();
-	}
-	function onClickUpdate() {
-		infoForm.action = 'criterionPayrollUpdate.do';
-		infoForm.method = 'post';
-		infoForm.submit();
-	}
-	function onClickDelete() {
-		infoForm.action = 'criterionPayrollDelete.do';
-		infoForm.method = 'post';
-		infoForm.submit();
-	}
-</script>
 </html>
