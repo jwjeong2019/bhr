@@ -15,6 +15,7 @@ import com.erp.dto.CriAttDto;
 import com.erp.dto.CriAttRegDto;
 import com.erp.dto.CriAttUpdDto;
 import com.erp.service.CriterionAttService;
+import com.erp.util.ErpUtils;
 
 @Controller
 public class CriterionAttController {
@@ -49,7 +50,7 @@ private static final Logger logger = LogManager.getLogger(CriterionDepController
 	@PostMapping("/criterionAttendanceUpdate.do")
 	public String criterionAttendanceUpdate(HttpServletRequest request) throws Exception {
 		CriAttUpdDto dtoReq = new CriAttUpdDto();
-		dtoReq.setReqCode(request.getParameter("code"));
+		dtoReq.setReqId(ErpUtils.convertStringToInteger(request.getParameter("id")));
 		dtoReq.setReqType(request.getParameter("type"));
 		dtoReq.setReqStatus(request.getParameter("status").charAt(0));
 		dtoReq.setReqName(request.getParameter("name"));
@@ -61,7 +62,7 @@ private static final Logger logger = LogManager.getLogger(CriterionDepController
 	@PostMapping("/criterionAttendanceDelete.do")
 	public String criterionAttendanceDelete(HttpServletRequest request) throws Exception {
 		CriAttDelDto dtoReq = new CriAttDelDto();
-		dtoReq.setReqCode(request.getParameter("code"));
+		dtoReq.setReqId(ErpUtils.convertStringToInteger(request.getParameter("id")));
 		CriAttDelDto dtoRes = service.criterionAttendanceDelete(dtoReq);
 		
 		return dtoRes.getResRedirectUrl();
