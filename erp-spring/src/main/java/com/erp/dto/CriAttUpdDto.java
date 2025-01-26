@@ -2,6 +2,7 @@ package com.erp.dto;
 
 public class CriAttUpdDto {
 	
+	private int reqId;
 	private String reqCode;
 	private String reqType;
 	private char reqStatus;
@@ -10,6 +11,12 @@ public class CriAttUpdDto {
 	private boolean isSuccess;
 	private String resRedirectUrl;
 	
+	public int getReqId() {
+		return reqId;
+	}
+	public void setReqId(int reqId) {
+		this.reqId = reqId;
+	}
 	public String getReqCode() {
 		return reqCode;
 	}
