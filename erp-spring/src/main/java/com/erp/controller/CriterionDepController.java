@@ -15,6 +15,7 @@ import com.erp.dto.CriDepDto;
 import com.erp.dto.CriDepRegDto;
 import com.erp.dto.CriDepUpdDto;
 import com.erp.service.CriterionDepService;
+import com.erp.util.ErpUtils;
 
 @Controller
 public class CriterionDepController {
@@ -49,8 +50,7 @@ public class CriterionDepController {
 	@PostMapping("/criterionDepartmentUpdate.do")
 	public String criterionDepartmentUpdate(HttpServletRequest request) throws Exception {
 		CriDepUpdDto dtoReq = new CriDepUpdDto();
-		dtoReq.setReqCode(request.getParameter("code"));
-		dtoReq.setReqType(request.getParameter("type"));
+		dtoReq.setReqId(ErpUtils.convertStringToInteger(request.getParameter("id")));
 		dtoReq.setReqStatus(request.getParameter("status").charAt(0));
 		dtoReq.setReqName(request.getParameter("name"));
 		CriDepUpdDto dtoRes = service.criterionDepartmentUpdate(dtoReq);
@@ -61,7 +61,7 @@ public class CriterionDepController {
 	@PostMapping("/criterionDepartmentDelete.do")
 	public String criterionDepartmentDelete(HttpServletRequest request) throws Exception {
 		CriDepDelDto dtoReq = new CriDepDelDto();
-		dtoReq.setReqCode(request.getParameter("code"));
+		dtoReq.setReqId(ErpUtils.convertStringToInteger(request.getParameter("id")));
 		CriDepDelDto dtoRes = service.criterionDepartmentDelete(dtoReq);
 		
 		return dtoRes.getResRedirectUrl();

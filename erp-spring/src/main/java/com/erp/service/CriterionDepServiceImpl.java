@@ -13,6 +13,7 @@ import com.erp.dto.CriDepDto;
 import com.erp.dto.CriDepRegDto;
 import com.erp.dto.CriDepUpdDto;
 import com.erp.dto.CriterionDto;
+import com.erp.vo.CriterionVO;
 
 @Service
 public class CriterionDepServiceImpl implements CriterionDepService {
@@ -29,14 +30,7 @@ public class CriterionDepServiceImpl implements CriterionDepService {
 		dtoSel.setType("DEP");
 		List<CriterionDto> voList = criterionDao.selectList(dtoSel)
 				.stream()
-				.map(vo -> {
-					CriterionDto dto = new CriterionDto();
-					dto.setCode(vo.getCode());
-					dto.setType(vo.getType());
-					dto.setStatus(vo.getStatus());
-					dto.setName(vo.getName());
-					return dto;
-				})
+				.map(CriterionVO::toDto)
 				.collect(Collectors.toList());
 		
 		dtoRes.setResList(voList);
@@ -66,8 +60,7 @@ public class CriterionDepServiceImpl implements CriterionDepService {
 		CriDepUpdDto dtoRes = new CriDepUpdDto();
 		
 		CriterionDto dtoUpd = new CriterionDto();
-		dtoUpd.setCode(dtoReq.getReqCode());
-		dtoUpd.setType(dtoReq.getReqType());
+		dtoUpd.setId(dtoReq.getReqId());
 		dtoUpd.setStatus(dtoReq.getReqStatus());
 		dtoUpd.setName(dtoReq.getReqName());
 		int count = criterionDao.update(dtoUpd);
@@ -83,7 +76,7 @@ public class CriterionDepServiceImpl implements CriterionDepService {
 		CriDepDelDto dtoRes = new CriDepDelDto();
 		
 		CriterionDto dtoDel = new CriterionDto();
-		dtoDel.setCode(dtoReq.getReqCode());
+		dtoDel.setId(dtoReq.getReqId());
 		int count = criterionDao.delete(dtoDel);
 		
 		if (count > 0) dtoRes.setSuccess(true);
