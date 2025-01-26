@@ -1,93 +1,263 @@
-# toy-erp
+# 📁ERP based on Spring Framework
+
+## 📌소개
+Spring 기반의 jsp로 ERP를 구현한 프로젝트입니다.
+
+## 📌목표
+- Spring, JSP, MVC 패턴 등 기술 역량 증진
+- ERP 시스템 구조와 도메인 이해 증진
+
+## 📌기간
+- 2025-01-08 ~ 2025-01-27
+
+## 📌인원 및 역할
+- 정진우 - 화면 작업, DB 구축 및 데이터 처리
+
+## 📌개발 환경
+- Framework: Spring 5.2.25-RELEASE
+- DB: MySQL 8.0.31
+- Mapper: Mybatis 3.0.4
+- Language: Java 11
+- WAS: Tomcat v9.0
+- IDE: Eclipse 2024-12-R
+
+## 📌ERD
+![alt text](assets/erd.png)
 
 
+## 📌구조
+- MVC 패턴
 
-## Getting started
+![alt text](assets/mvc.png)
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+[원본이미지](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1#R%3Cmxfile%3E%3Cdiagram%20name%3D%22%ED%8E%98%EC%9D%B4%EC%A7%80-1%22%20id%3D%22EYmIl-xgydG-Mr9KmU9k%22%3E7Vtdk6I4FP01Pq4FCeHjsUd7d2prprq33JqZfUSImmo0Voxf8%2Bs3SFTIxaJbQbRLp2qK3EAg55ybe2%2BgO7g33fwlwvnkO49p0kFWvOngfgehwAvU%2F6lhmxkIIplhLFicmeyjYcB%2BU220tHXJYroonCg5TySbF40Rn81oJAu2UAi%2BLp424knxrvNwTIFhEIUJtP5ksZxkVoSxe%2Bz4Stl4sr%2B1S5ysZxruz9ZTWUzCmK9zJvzcwT3BucyOppseTVLw9sBk1%2F15ovfwZILO5Hsu2DwvVq%2F%2FOPHPxPv6bY7i35ve9A89yipMlnrGPxhd6weW2z0Mgi9nMU0Hsjv4y3rCJB3MwyjtXSvelW0ip4nuDhM2nqnjSD0YFcqwokIyhemT7hhyKflUdYz4TGrOsZW2WZL0eMLF7q44Dqk%2FipR9IQV%2Fo7keN%2FLpcKR69OOrG9DNSVzsA9pKppRPqRRbdYq%2BwNX8aIX6urk%2B0o2xtk1yTGOijaGW2Pgw8pEEdaB5%2BAAnCHCi3eoSUs7mgFA%2Fdso48NEQu249HJgkOOSdLCCnKRYwYKGnkBI8SZSmb8M%2FRiPqRqX%2BEXvB0LLq4capdhDXu6qDOICavwevgBO13s7TwxmXtJqUYRi9jXc0vixlwmZU2%2BNQvL2oq5hMp291LVLkBdWEMgqKKB8iYA5mvwRl22oKZQIdYDC4c5Rtx0DZbRtlt0TLnwxku3Upex9Zy9V4Krt8B84NQOf4hj4RhM5GJdj5TUG35y6HHURsFj%2BluXYa05JwsWBREahjdExhUlCI7a984798o59C4ZJDM0XCPjRfqWBqYmnYzC7ZMPkrd7wbqkt0azfWvms30r5hjpPNicagGjCYU%2FPmSxHR6ugkQzGmsmp9hUrIMU1KiN7bBE1CyVbFxy1jX9%2FhlTM1kZyPkqLQzGCdTVNfla8qzIECYyDTiTMcwEA7MR6mfYE%2BYQVzqT5rktRB53Ze53ZB51ZB5tYplbegTrdNdSLvRJj%2BqDoxOpFVXUudsJYbULFiiqJbCjsuubmwA8uv%2FtPLTYHmm9pqHzSYTPa%2FAMz2yWS0VblhTAV%2BR0aZLZDfhlUp5iKD2C7LLM3ilaT%2F9Hk5e%2FYr3fTZ%2FWrKUW3XN%2BIW6hLAX1CappKm%2BIN56oWx7BTmVdhWh5q2QgM2lyrH61rovOhArOqxmg4QwYPyKsqJWRQ5fhe5wfHnn0e%2Fa2YZalyPXJV%2BVHt19fnoBzR5dheR8ygHUvKsruddl%2FLaC5bPRzkxt%2BmCM%2FN%2Fx4gWjlnmNk023Kr%2BHs7nN7brFPhGLtR6Jovg5vPDSQxtB2b9UVNYtC27%2FbgIK5kH%2F5U8XRAYgZhaCIz%2Bg%2FNqzs3XhHU5vV2SZF%2Fb6R%2B1ULUAAE8XOD1U0%2FW93kEP0qtI98CeRz1O75tp9vV93oH7vA%2F6q2i6wOWBlFrweBjnd9%2B3Pc3iim8PrVaqI%2Bx43eI7TlLydZpNyGkB1P9tzmPVrHQbx0iPQe1%2F9ktEczeiYYchJZsIFR%2BE3oqnOEHrngJ3Evr%2FwheJatKy87GvNKcsjpNTGzZFKmrA1jXfVZTs0bglzoQbA7bkZeM9Auu55MaAhW8B7xLYwExbWgcWJh4%2FPgOuXtu4wrr9HnEFC0HbuLrwTdFdLgQgdDUHrGoe%2F6Aqy7%2BOf5aGn%2F8H%3C%2Fdiagram%3E%3C%2Fmxfile%3E)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## 📌주요 기능
+### 로그인
+사용자 아이디와 비밀번호를 검증하고 접근을 허용합니다.
 
-## Add your files
+---
+### 기준 관리
+ERP 시스템의 도메인에 대한 기준을 정하고 관리합니다.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+- 부서 기준 관리
+  - 부서에 대한 기준을 정하고, 이를 관리합니다.
+- 근태 기준 관리
+  - 근태에 대한 기준을 정하고, 이를 관리합니다.
+- 급여 기준 관리
+  - 급여에 대한 기준을 정하고, 이를 관리합니다.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/timestar7979/toy-erp.git
-git branch -M main
-git push -uf origin main
-```
+---
+### 인사 관리
+인사 시스템에 필요한 부서와 사원을 관리합니다.
 
-## Integrate with your tools
+- 부서 관리
+  - 기준 관리에서 등록한 부서 기준에서 부서를 등록 및 관리합니다.
+- 부서원 관리
+  - 부서 관리에서 등록한 부서에 사원을 배치하고 관리합니다.
+- 사원 관리
+  - 사원 추가, 수정, 삭제 등을 통하여 사원 정보를 관리합니다.
 
-- [ ] [Set up project integrations](https://gitlab.com/timestar7979/toy-erp/-/settings/integrations)
+## 📌시연 및 설명
+### 로그인
+<details>
+<summary>펼쳐보기</summary>
 
-## Collaborate with your team
+![alt text](assets/login-1.png)
+기본 화면입니다.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+![alt text](assets/login-2.png)
+아이디와 비밀번호를 입력한 상태입니다.
 
-## Test and Deploy
+![alt text](assets/main-1.png)
+로그인 성공 시 메인 화면으로 이동합니다.
 
-Use the built-in continuous integration in GitLab.
+  </details>
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+---
+### 기준 관리
+<details>
+<summary>펼쳐보기</summary>
 
-***
+#### - 부서 기준 관리
+![alt text](assets/cri-dep-1.png)
+부서 기준 관리 기본 화면입니다.  
+등록할 부서 기준을 입력 후 기준 등록 버튼을 클릭하여 추가할 수 있습니다.
 
-# Editing this README
+![alt text](assets/cri-dep-2.png)
+부서 기준이 추가된 결과입니다.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+![alt text](assets/cri-dep-3.png)
+등록 현황에서 부서 기준을 클릭하면 부서 정보를 수정할 수 있습니다.  
+상태와 명칭을 수정하고 수정 버튼을 누르면 수정 완료됩니다.  
+삭제 버튼을 누르면 해당 부서 기준을 삭제합니다.
 
-## Suggestions for a good README
+![alt text](assets/cri-dep-4.png)
+방금 추가한 부서 기준을 삭제해보겠습니다.  
+부서 기준을 클릭합니다.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+![alt text](assets/cri-dep-5.png)
+삭제 버튼을 누릅니다.
 
-## Name
-Choose a self-explaining name for your project.
+![alt text](assets/cri-dep-6.png)
+등록 현황에서 부서 기준이 삭제되었습니다.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+#### -  근태 기준 관리
+![alt text](assets/cri-att-1.png)
+근태 기준 관리 기본 화면입니다.  
+등록할 근태 기준을 입력 후 기준 등록 버튼을 클릭하여 추가할 수 있습니다.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+![alt text](assets/cri-att-2.png)
+근태 기준이 추가된 결과입니다.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+![alt text](assets/cri-att-3.png)
+등록 현황에서 근태 기준을 클릭하면 근태 정보를 수정할 수 있습니다.  
+상태와 명칭을 수정하고 수정 버튼을 누르면 수정 완료됩니다.  
+삭제 버튼을 누르면 해당 근태 기준을 삭제합니다.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+![alt text](assets/cri-att-4.png)
+방금 추가한 근태 기준을 삭제해보겠습니다.  
+근태 기준을 클릭합니다.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+![alt text](assets/cri-att-5.png)
+삭제 버튼을 누릅니다.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+![alt text](assets/cri-att-6.png)
+등록 현황에서 근태 기준이 삭제되었습니다.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+#### -  급여 기준 관리
+![alt text](assets/cri-pay-1.png)
+급여 기준 관리 기본 화면입니다.  
+등록할 급여 기준을 입력 후 기준 등록 버튼을 클릭하여 추가할 수 있습니다.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+![alt text](assets/cri-pay-2.png)
+급여 기준이 추가된 결과입니다.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+![alt text](assets/cri-pay-3.png)
+등록 현황에서 급여 기준을 클릭하면 급여 정보를 수정할 수 있습니다.  
+상태와 명칭을 수정하고 수정 버튼을 누르면 수정 완료됩니다.  
+삭제 버튼을 누르면 해당 급여 기준을 삭제합니다.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+![alt text](assets/cri-pay-4.png)
+방금 추가한 급여 기준을 삭제해보겠습니다.  
+급여 기준을 클릭합니다.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+![alt text](assets/cri-pay-5.png)
+삭제 버튼을 누릅니다.
 
-## License
-For open source projects, say how it is licensed.
+![alt text](assets/cri-pay-6.png)
+등록 현황에서 급여 기준이 삭제되었습니다.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+</details>
+
+---
+### 인사 관리
+<details>
+<summary>펼쳐보기</summary>
+
+#### -  부서 관리
+![alt text](assets/hr-dep-1.png)
+부서 관리 기본 화면입니다.  
+
+![alt text](assets/hr-dep-2.png)
+부서 기준 현황에서 부서 기준을 클릭하면 알림창이 띄워집니다.  
+추가 여부를 묻고, 추가를 원하면 '예' 버튼을, 원치 않으면 '아니오' 버튼을 눌러 진행합니다.
+
+![alt text](assets/hr-dep-3.png)
+부서를 추가하여 부서 등록 현황에 등록된 결과입니다.
+
+![alt text](assets/hr-dep-4.png)
+부서 등록 현황에서 부서를 클릭하면 삭제 여부를 묻는 알림창을 띄웁니다.
+
+![alt text](assets/hr-dep-5.png)
+삭제를 진행하여 부서 등록 현황에서 제거된 결과입니다.
+
+#### -  부서원 관리
+![alt text](assets/hr-dep-mem-1.png)
+부서원 관리 기본 화면입니다.
+
+![alt text](assets/hr-dep-mem-2.png)
+부서를 선택한 결과입니다.  
+선택 후 아래에서 현재 선택한 부서를 알 수 있습니다.
+
+![alt text](assets/hr-dep-mem-3.png)
+첫번째 사원을 선택합니다.
+
+![alt text](assets/hr-dep-mem-4.png)
+사원을 선택한 결과입니다.  
+선택 후 아래에서 현재 선택한 사원을 알 수 있습니다.  
+또한, 부서 현황 아래에 '추가하기' 버튼이 활성화됩니다.
+
+![alt text](assets/hr-dep-mem-5.png)
+방금 선택한 사원을 선택한 부서로 배치한 결과입니다.
+
+![alt text](assets/hr-dep-mem-6.png)
+부서 현황의 사원을 클릭하면 '제거하기' 버튼이 활성화됩니다.
+
+![alt text](assets/hr-dep-mem-7.png)
+부서 현황에서 사원을 제거한 결과입니다.
+
+#### -  사원 관리
+![alt text](assets/hr-emp-1.png)
+사원 관리 기본 화면입니다.
+
+![alt text](assets/hr-emp-2.png)
+사원 현황에서 '사원 추가하기' 버튼을 누르면 입력 창을 띄웁니다.  
+추가할 사원 정보를 입력합니다.
+
+![alt text](assets/hr-emp-3.png)
+스크롤을 내리면 경력사항을 입력, 추가할 수 있습니다.
+
+![alt text](assets/hr-emp-4.png)
+사원 현황에 사원이 추가된 결과입니다.  
+사원을 클릭하면 우측에 사원 정보가 나옵니다.
+
+![alt text](assets/hr-emp-5.png)
+사원 정보에서 '수정' 버튼을 클릭하면 정보를 수정하는 창이 띄워집니다.  
+수정을 완료하려면 '완료' 버튼을 눌러 진행합니다.
+
+![alt text](assets/hr-emp-6.png)
+사원 정보가 수정된 결과입니다.
+
+</details>
+
+## 📌특이사항
+
+- 개인 사정으로 구현 범위 축소와 미흡한 기능이 있는 점 양해바랍니다.🙏
+- ERP 시스템의 중요 자원 중 하나인 인사(HR)에 초점을 두었습니다.
+- 미구현
+  <details>
+  <summary>펼쳐보기</summary>
+
+  ```
+  - controller
+  AttendanceAnnController.java
+  AttendanceAppController.java
+  AttendanceDetController.java
+  AttendanceRecController.java
+  AttendanceSitController.java
+  PayrollCalRetController.java
+  PayrollPayController.java
+  PayrollSpeController.java
+  MainController.java
+  - js
+  attendance_annualleave_situation.js
+  attendance_apply.js
+  attendance_details.js
+  attendance_receive.js
+  attendance_situation.js
+  payroll_calculated_retrieval.js
+  payroll_payment.js
+  payroll_specification.js
+  - jsp
+  attendance_annualleave_situation.jsp
+  attendance_apply.jsp
+  attendance_details.jsp
+  attendance_receive.jsp
+  attendance_situation.jsp
+  payroll_calculated_retrieval.jsp
+  payroll_payment.jsp
+  payroll_specification.jsp
+  main.jsp
+  ```
+  </details>
