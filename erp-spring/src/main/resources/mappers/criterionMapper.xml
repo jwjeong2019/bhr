@@ -48,10 +48,10 @@
     		name = #{name},
     	</if>
   	</set>
-  	where code = #{code}
+  	where id = #{id}
   </update>
   
   <delete id="deleteCriterion" parameterType="criterionDto">
-  	delete from criterion where code = #{code}
+  	delete from criterion where id = #{id}
   </delete>
 </mapper>
