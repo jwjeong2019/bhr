@@ -13,6 +13,7 @@ import com.erp.dto.CriAttDto;
 import com.erp.dto.CriAttRegDto;
 import com.erp.dto.CriAttUpdDto;
 import com.erp.dto.CriterionDto;
+import com.erp.vo.CriterionVO;
 
 @Service
 public class CriterionAttServiceImpl implements CriterionAttService {
@@ -29,14 +30,7 @@ public class CriterionAttServiceImpl implements CriterionAttService {
 		dtoSel.setType("ATT");
 		List<CriterionDto> voList = criterionDao.selectList(dtoSel)
 				.stream()
-				.map(vo -> {
-					CriterionDto dto = new CriterionDto();
-					dto.setCode(vo.getCode());
-					dto.setType(vo.getType());
-					dto.setStatus(vo.getStatus());
-					dto.setName(vo.getName());
-					return dto;
-				})
+				.map(CriterionVO::toDto)
 				.collect(Collectors.toList());
 		
 		dtoRes.setResList(voList);
@@ -66,7 +60,7 @@ public class CriterionAttServiceImpl implements CriterionAttService {
 		CriAttUpdDto dtoRes = new CriAttUpdDto();
 		
 		CriterionDto dtoUpd = new CriterionDto();
-		dtoUpd.setCode(dtoReq.getReqCode());
+		dtoUpd.setId(dtoReq.getReqId());
 		dtoUpd.setType(dtoReq.getReqType());
 		dtoUpd.setStatus(dtoReq.getReqStatus());
 		dtoUpd.setName(dtoReq.getReqName());
@@ -83,7 +77,7 @@ public class CriterionAttServiceImpl implements CriterionAttService {
 		CriAttDelDto dtoRes = new CriAttDelDto();
 		
 		CriterionDto dtoDel = new CriterionDto();
-		dtoDel.setCode(dtoReq.getReqCode());
+		dtoDel.setId(dtoReq.getReqId());
 		int count = criterionDao.delete(dtoDel);
 		
 		if (count > 0) dtoRes.setSuccess(true);
