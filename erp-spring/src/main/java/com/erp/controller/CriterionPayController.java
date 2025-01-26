@@ -21,6 +21,7 @@ import com.erp.dto.CriPayUpdDto;
 import com.erp.dto.CriterionDto;
 import com.erp.service.CriterionDepService;
 import com.erp.service.CriterionPayService;
+import com.erp.util.ErpUtils;
 
 @Controller
 public class CriterionPayController {
@@ -55,8 +56,7 @@ private static final Logger logger = LogManager.getLogger(CriterionDepController
 	@PostMapping("/criterionPayrollUpdate.do")
 	public String criterionPayrollUpdate(HttpServletRequest request) throws Exception {
 		CriPayUpdDto dtoReq = new CriPayUpdDto();
-		dtoReq.setReqCode(request.getParameter("code"));
-		dtoReq.setReqType(request.getParameter("type"));
+		dtoReq.setReqId(ErpUtils.convertStringToInteger(request.getParameter("id")));
 		dtoReq.setReqStatus(request.getParameter("status").charAt(0));
 		dtoReq.setReqName(request.getParameter("name"));
 		CriPayUpdDto dtoRes = service.criterionPayrollUpdate(dtoReq);
@@ -67,7 +67,7 @@ private static final Logger logger = LogManager.getLogger(CriterionDepController
 	@PostMapping("/criterionPayrollDelete.do")
 	public String criterionPayrollDelete(HttpServletRequest request) throws Exception {
 		CriPayDelDto dtoReq = new CriPayDelDto();
-		dtoReq.setReqCode(request.getParameter("code"));
+		dtoReq.setReqId(ErpUtils.convertStringToInteger(request.getParameter("id")));
 		CriPayDelDto dtoRes = service.criterionPayrollDelete(dtoReq);
 		
 		return dtoRes.getResRedirectUrl();

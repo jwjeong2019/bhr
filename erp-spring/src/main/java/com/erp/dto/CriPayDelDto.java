@@ -2,16 +2,16 @@ package com.erp.dto;
 
 public class CriPayDelDto {
 
-private String reqCode;
+	private int reqId;
 	
 	private boolean isSuccess;
 	private String resRedirectUrl;
 	
-	public String getReqCode() {
-		return reqCode;
+	public int getReqId() {
+		return reqId;
 	}
-	public void setReqCode(String reqCode) {
-		this.reqCode = reqCode;
+	public void setReqId(int reqId) {
+		this.reqId = reqId;
 	}
 	public boolean isSuccess() {
 		return isSuccess;
