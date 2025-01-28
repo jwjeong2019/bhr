@@ -10,8 +10,9 @@
         </form>
         <div class="container w-25vw space center mg-r-70">
             <div class="f-20" id="greet">${name}님 반갑습니다.</div>
-            <form action="logoutAction.do" method="post">
-             <button id="logout" class="btn btn-primary" type="submit">로그아웃</button>
+            <form action="logout.do" method="post">
+            	<input id="param-csrf" name="${_csrf.parameterName }" value="${_csrf.token }" hidden>
+            	<button id="logout" class="btn btn-primary" type="submit">로그아웃</button>
             </form>
         </div>
     </nav>

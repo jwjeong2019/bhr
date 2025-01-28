@@ -17,7 +17,11 @@
     <%-- <script type="module" src="<%=path%>/resources/js/login.js"></script> --%>
 </head>
 <body>
-    <form action="loginAction.do" method="post">
+    <form action="/login" method="post">
+    	<input id="param-csrf" name="${_csrf.parameterName }" value="${_csrf.token }" hidden />
+    	<input id="param-username" name="username" value="admin@erp.kr" hidden>
+    	<input id="param-password" name="password" value="1234" hidden>
+    	<input id="param-role" name="role" value="ADMIN" hidden>
 	    <div class="container center center-row h-100vh">
 	        <div class="b-solid b-radius pd-30 w-20vw h-70vh bg-primary">
 	            <div class="container f-col center">
