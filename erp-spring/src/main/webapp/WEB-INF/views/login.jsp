@@ -14,14 +14,13 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Gowun+Dodum&family=Hi+Melody&display=swap');
     </style>
-    <%-- <script type="module" src="<%=path%>/resources/js/login.js"></script> --%>
+    <script type="text/javascript" src="/resources/js/login.js"></script>
 </head>
 <body>
-    <form action="/login" method="post">
+    <form id="form-login">
     	<input id="param-csrf" name="${_csrf.parameterName }" value="${_csrf.token }" hidden />
-    	<input id="param-username" name="username" value="admin@erp.kr" hidden>
-    	<input id="param-password" name="password" value="1234" hidden>
-    	<input id="param-role" name="role" value="ADMIN" hidden>
+    	<input id="param-username" name="username" hidden>
+    	<input id="param-password" name="password" hidden>
 	    <div class="container center center-row h-100vh">
 	        <div class="b-solid b-radius pd-30 w-20vw h-70vh bg-primary">
 	            <div class="container f-col center">
@@ -30,12 +29,12 @@
 	            </div>
 	            <div>
 	                <p class="f-20">아이디 *</p>
-	                <input id="id" class="b-solid b-radius f-20 ff w-90p pd-3-10" type="text" name="id">
+	                <input id="id" class="b-solid b-radius f-20 ff w-90p pd-3-10" type="text" name="id" onchange="onChangeId(this)">
 	                <p class="f-20">비밀번호 *</p>
-	                <input id="pw" class="b-solid b-radius f-20 ff w-90p pd-3-10" type="password" name="pwd">
+	                <input id="pw" class="b-solid b-radius f-20 ff w-90p pd-3-10" type="password" name="pwd" onchange="onChangePw(this)">
 	            </div>
 	            <div class="container center-row">
-	                <button type="submit" class="btn btn-primary w-100p mg-t-50 f-20">Sign In</button>
+	                <button type="button" class="btn btn-primary w-100p mg-t-50 f-20" onclick="onClickSignIn()">Sign In</button>
 	            </div>
 	            <div>
 	                <p>계정 생성은 관리자에게 문의하시기 바랍니다.</p>
