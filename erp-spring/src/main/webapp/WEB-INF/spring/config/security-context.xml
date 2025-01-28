@@ -15,7 +15,7 @@
     <!-- 시큐리티의 시작점 -->
     <http>
     	<intercept-url pattern="/login.do" access="permitAll"/>
-    	<intercept-url pattern="/main.do" access="hasAnyRole('MASTER', 'ADMIN', 'USER')"/>
+    	<intercept-url pattern="/*.do" access="hasAnyRole('MASTER', 'ADMIN', 'USER')"/>
     	
         <form-login login-page="/login.do" authentication-success-handler-ref="customAuthenticationSuccess"/>
         
