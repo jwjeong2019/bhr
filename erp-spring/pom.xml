@@ -7,6 +7,7 @@
   <properties>
   	<java-version>11</java-version>
   	<org.springframework-version>5.2.25.RELEASE</org.springframework-version>
+  	<org.springframework.security-version>5.3.13.RELEASE</org.springframework.security-version>
   </properties>
   <dependencies>
 	  <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
@@ -109,7 +110,24 @@
 	    <version>2.18.2</version>
 	</dependency>
 
-
+	<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-core</artifactId>
+	    <version>${org.springframework.security-version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-web</artifactId>
+	    <version>${org.springframework.security-version}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-config</artifactId>
+	    <version>${org.springframework.security-version}</version>
+	</dependency>
 
   </dependencies>
   <build>
