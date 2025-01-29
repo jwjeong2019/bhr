@@ -60,21 +60,7 @@
     <script type="module" src="<%=path%>/resources/js/component/side_menu.js"></script>
 </head>
 <body>
-    <header class="nav pos-fixed top-0 left-0 w-100vw bg-white zi-1">
-        <nav class="container space">
-            <form action="main.do" method="get">
-            	<button class="b-none bg-none pd-0">
-		            <img id="logo" url="/html/main.html" src="https://img.freepik.com/premium-vector/erp-vector-icon-web_116137-3113.jpg?w=740">
-            	</button>
-            </form>
-            <div class="container w-25vw space center mg-r-70">
-                <div class="f-20" id="greet">${name}님 반갑습니다.</div>
-                <form action="logoutAction.do" method="post">
-	                <button id="logout" class="btn btn-primary" type="submit">로그아웃</button>
-                </form>
-            </div>
-        </nav>
-    </header>
+    <jsp:include page="/resources/jsp/header.jsp" flush="false" />
     <section class="container space pd-100-30">
         <aside id="side-menu">
             <!-- load side_menu.js -->
