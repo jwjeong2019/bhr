@@ -5,7 +5,7 @@
     <nav class="container space">
         <form action="main.do" method="get">
         	<button class="b-none bg-none pd-0">
-          <img id="logo" url="/html/main.html" src="https://img.freepik.com/premium-vector/erp-vector-icon-web_116137-3113.jpg?w=740">
+          <img id="logo" url="/html/main.html" src="https://t3.ftcdn.net/jpg/02/27/25/12/360_F_227251234_0JnUIGzzksEC1az3PHJ8Folr6yoOJQ7A.jpg">
         	</button>
         </form>
         <div class="container w-25vw space center mg-r-70">
