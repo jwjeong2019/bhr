@@ -11,7 +11,7 @@
 	
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></beans:property>
-		<beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/db_erp?useSSL=false&amp;serverTimezone=UTC"></beans:property>
+		<beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/db_erp?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"></beans:property>
 		<beans:property name="username" value="erp_user"></beans:property>
 		<beans:property name="password" value="1234"></beans:property>
 	</beans:bean>
