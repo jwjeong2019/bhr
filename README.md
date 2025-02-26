@@ -1,11 +1,11 @@
-# 📁ERP based on Spring Framework
+# 📁HR based on Spring Framework
 
 ## 📌소개
-Spring 기반의 jsp로 ERP를 구현한 프로젝트입니다.
+Spring 기반의 jsp로 HR을 구현한 프로젝트입니다.
 
 ## 📌목표
 - Spring, JSP, MVC 패턴 등 기술 역량 증진
-- ERP 시스템 구조와 도메인 이해 증진
+- HR 시스템 구조와 도메인 이해 증진
 
 ## 📌기간
 - 2025-01-08 ~ 2025-01-27
@@ -221,10 +221,14 @@ ERP 시스템의 도메인에 대한 기준을 정하고 관리합니다.
 
 </details>
 
+## 📌릴리즈 노트
+|버전|내용|날짜|
+|-|-|-|
+|v0.1.0|Spring Security 적용 및 로그인 기능 수정|2025-01-30|
+
 ## 📌특이사항
 
 - 개인 사정으로 구현 범위 축소와 미흡한 기능이 있는 점 양해바랍니다.🙏
-- ERP 시스템의 중요 자원 중 하나인 인사(HR)에 초점을 두었습니다.
 - 미구현
   <details>
   <summary>펼쳐보기</summary>
