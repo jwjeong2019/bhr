@@ -1,4 +1,10 @@
 # 📁HR based on Spring Framework
+![image](https://img.shields.io/badge/java-v.11-blue.svg)
+![image](https://img.shields.io/badge/spring-v.5.2.25.RELEASE-blue.svg)
+![image](https://img.shields.io/badge/jsp-grey.svg)
+![image](https://img.shields.io/badge/mysql-v.8.0.31-blue.svg)
+![image](https://img.shields.io/badge/mybatis-v.3.0.4-blue.svg)
+![image](https://img.shields.io/badge/tomcat-v.9.0-blue.svg)
 
 ## 📌소개
 Spring 기반의 jsp로 HR을 구현한 프로젝트입니다.
@@ -12,14 +18,6 @@ Spring 기반의 jsp로 HR을 구현한 프로젝트입니다.
 
 ## 📌인원 및 역할
 - 정진우 - 화면 작업, DB 구축 및 데이터 처리
-
-## 📌개발 환경
-- Framework: Spring 5.2.25-RELEASE
-- DB: MySQL 8.0.31
-- Mapper: Mybatis 3.0.4
-- Language: Java 11
-- WAS: Tomcat v9.0
-- IDE: Eclipse 2024-12-R
 
 ## 📌ERD
 ![alt text](assets/erd.png)
