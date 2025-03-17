@@ -140,6 +140,7 @@
         </main>
     </section>
     <form id="form-update">
+    	<input name="${_csrf.parameterName }" value="${_csrf.token }" hidden />
     	<input id="upd-dep-id" name="depId" hidden>
     	<input id="upd-emp-id" name="empId" hidden>
     </form>
