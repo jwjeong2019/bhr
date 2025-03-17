@@ -15,17 +15,17 @@ const menuList = [
         menuNm: '인사관리',
         subMenus: [
             {
-                key: 4,
+                key: 1,
                 url: '/hrDepartment.do',
                 nm: '부서 관리'
             },
             {
-                key: 5,
+                key: 2,
                 url: '/hrDepartmentMember.do',
                 nm: '부서원 관리'
             },
             {
-                key: 6,
+                key: 3,
                 url: '/hrEmployee.do',
                 nm: '사원 관리'
             },
