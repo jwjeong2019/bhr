@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+<%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
+<%@ page import="com.fasterxml.jackson.datatype.jsr310.JavaTimeModule" %>
 <%@ page import="com.erp.dto.CriterionDto" %>
 <%@ page import="com.erp.dto.DepartmentDto" %>
 <%@ page import="com.erp.dto.EmployeeDto" %>
@@ -13,34 +15,29 @@
 	String msg = (String) request.getAttribute("msg");
 %>
 <%!
-	public static final String JSON_CRITERION = "{'code': '%s', 'type': '%s', 'status': '%s', 'name': '%s'}";
-	public static final String JSON_DEPARTMENT = "{'id': '%s', 'criterion': %s}";
-	public static final String JSON_EMPLOYEE = "{'id': '%s', 'code': '%s', 'name': '%s', 'position': '%s', 'department': %s}";
-	public String convertToJson(CriterionDto c) {
-		return String.format(JSON_CRITERION, 
-				c.getCode(), c.getType(), c.getStatus(), c.getName());
+	public String convertToJson(DepartmentDto d) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new JavaTimeModule());
+		return mapper.writeValueAsString(d);
 	}
-	public String convertToJson(DepartmentDto d) {
-		CriterionDto c = d.getCriterion();
-		return String.format(JSON_DEPARTMENT,
-				d.getId(), 
-				String.format(JSON_CRITERION,
-						c.getCode(), c.getType(), c.getStatus(), c.getName()));
+	public String convertToJson(EmployeeDto e) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new JavaTimeModule());
+		return mapper.writeValueAsString(e);
 	}
-	public String convertToJson(EmployeeDto e) {
+	public String getDepartmentName(EmployeeDto e) {
 		DepartmentDto d = e.getDepartment();
 		if (d == null) {
-			return String.format(JSON_EMPLOYEE,
-					e.getId(), e.getCode(), e.getName(), e.getPosition(),
-					null);
+			return "-";
 		}
-		CriterionDto c = d.getCriterion();
-		return String.format(JSON_EMPLOYEE,
-				e.getId(), e.getCode(), e.getName(), e.getPosition(),
-				String.format(JSON_DEPARTMENT,
-						d.getId(),
-						String.format(JSON_CRITERION,
-								c.getCode(), c.getType(), c.getStatus(), c.getName())));
+		return d.getCriterion().getName();
+	}
+	public String getPosition(EmployeeDto e) {
+		String pos = e.getPosition();
+		if (pos == null) {
+			return "-";
+		}
+		return pos;
 	}
 %>
 <!DOCTYPE html>
@@ -49,22 +46,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR 부서원 관리</title>
-    <link rel="stylesheet" href="<%=path%>/resources/css/common/layout.css">
-    <link rel="stylesheet" href="<%=path%>/resources/css/common/font.css">
-    <link rel="stylesheet" href="<%=path%>/resources/css/common/component.css">
-    <link rel="stylesheet" href="<%=path%>/resources/css/common/origin.css">
+    <jsp:include page="/resources/jsp/linkes.jsp" />
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Gowun+Dodum&family=Hi+Melody&display=swap');
     </style>
-    <script type="module" src="<%=path%>/resources/js/scroll_box_couple.js"></script>
-    <script type="module" src="<%=path%>/resources/js/component/side_menu.js"></script>
 </head>
 <body>
     <jsp:include page="/resources/jsp/header.jsp" flush="false" />
     <section class="container space pd-100-30">
-        <aside id="side-menu">
-            <!-- load side_menu.js -->
-        </aside>
+        <jsp:include page="/resources/jsp/side_menu.jsp" flush="false" />
         <main class="mg-l-30 w-80p">
             <header>
                 <h1>부서원 관리</h1>
@@ -78,7 +68,7 @@
                         </div>
                         <ul class="scroll-box">
                             <% for (int i = 0; i < listDep.size(); i++) { %>
-	                            <li class="container space" onclick="onClickDepItem(<%=convertToJson(listDep.get(i)) %>)">
+	                            <li class="container space" onclick='onClickDepItem(<%=convertToJson(listDep.get(i)) %>)'>
 					                <span class="f-20 w-30p"><%=listDep.get(i).getCriterion().getName() %></span>
 					            </li>                            	
                             <% } %>
@@ -98,7 +88,7 @@
                         </div>
                         <ul class="scroll-box">
                             <% for (int i = 0; i < listEmp.size(); i++) { %>
-	                            <li class="container space" onclick="onClickEmpItem(<%=convertToJson(listEmp.get(i)) %>)">
+	                            <li class="container space" onclick='onClickEmpItem(<%=convertToJson(listEmp.get(i)) %>)'>
 					                <span class="f-20 w-30p"><%=listEmp.get(i).getCode() %></span>
 					                <span class="f-20 w-30p"><%=listEmp.get(i).getJoinDate() %></span>
 					                <span class="f-20 w-30p"><%=listEmp.get(i).getName() %></span>
@@ -120,7 +110,7 @@
                         </div>
                         <ul class="scroll-box">
                             <% for (int i = 0; i < listMem.size(); i++) { %>
-	                            <li class="container space" onclick="onClickMemItem(<%=convertToJson(listMem.get(i)) %>)">
+	                            <li class="container space" onclick='onClickMemItem(<%=convertToJson(listMem.get(i)) %>)'>
 					                <span class="f-20 w-30p"><%=listMem.get(i).getDepartment().getCriterion().getName() %></span>
 					                <span class="f-20 w-30p"><%=listMem.get(i).getCode() %></span>
 					                <span class="f-20 w-30p"><%=listMem.get(i).getName() %></span>
@@ -129,75 +119,30 @@
                         </ul>
                     </div>
                     <div class="container f-col">
-                        <button id="btn-remove" class="btn btn-danger mg-b-20" style="display: none;" onclick="onClickRemove()">⬇️ 제거하기</button>
-                        <button id="btn-add" class="btn btn-success" style="display: none;" onclick="onClickAdd()">⬆️ 추가하기</button>
+                        <jsp:include page="/resources/jsp/button.jsp" flush="false">
+                        	<jsp:param value="btn-remove" name="id"/>
+                        	<jsp:param value="mg-b-20" name="customClassName"/>
+                        	<jsp:param value="⬇️ 제거하기" name="title"/>
+                        	<jsp:param value="danger" name="type"/>
+                        	<jsp:param value="true" name="hidden"/>
+                        	<jsp:param value="onClickRemove()" name="onClick"/>
+                        </jsp:include>
+                        <jsp:include page="/resources/jsp/button.jsp" flush="false">
+                        	<jsp:param value="btn-add" name="id"/>
+                        	<jsp:param value="⬆️ 추가하기" name="title"/>
+                        	<jsp:param value="success" name="type"/>
+                        	<jsp:param value="true" name="hidden"/>
+                        	<jsp:param value="onClickAdd()" name="onClick"/>
+                        </jsp:include>
                     </div>
                 </article>
             </section>
         </main>
     </section>
-    <dialog class="alert-insert">
-        <span class="f-30">부서를 추가하시겠습니까?</span>
-        <div class="container mg-v-25 space w-70p">
-            <button class="btn btn-success">예</button>
-            <button class="btn btn-primary">아니오</button>
-        </div>
-    </dialog>
-    <dialog class="alert-delete">
-        <span class="f-30">부서를 제거하시겠습니까?</span>
-        <div class="container mg-v-25 space w-70p">
-            <button class="btn btn-success">예</button>
-            <button class="btn btn-primary">아니오</button>
-        </div>
-    </dialog>
     <form id="form-update">
     	<input id="upd-dep-id" name="depId" hidden>
     	<input id="upd-emp-id" name="empId" hidden>
     </form>
-    <!-- <form id="form-delete">
-    	<input id="del-emp-id" name="empId" hidden>
-    </form> -->
 </body>
-<script>
-	if ('${msg}' == 'already existing Department.') {
-		alert('${msg}');
-	}
-	const formUpd = document.getElementById('form-update');
-	//const formDel = document.getElementById('form-delete');
-	const dialogIns = document.getElementById('dialog-insert');
-	const dialogDel = document.getElementById('dialog-delete');
-	
-	function onClickDepItem(item) {
-		console.log(item);
-		const sd = document.getElementById('select-department');
-		sd.innerText = '👉 ' + item.criterion.name;
-		sd.style.display = 'inline-block';
-		document.getElementById('upd-dep-id').value = item.id;
-	}
-	function onClickEmpItem(item) {
-		console.log(item);
-		const se = document.getElementById('select-employee');
-		se.innerText = '👉 ' + item.name + '(' + item.code + ')';
-		se.style.display = 'inline-block';
-		document.getElementById('btn-add').style.display = 'inline-block';
-		document.getElementById('upd-emp-id').value = item.id;
-	}
-	function onClickMemItem(item) {
-		console.log(item);
-		document.getElementById('btn-remove').style.display = 'inline-block';
-		document.getElementById('upd-emp-id').value = item.id;
-		document.getElementById('upd-dep-id').value = null;
-	}
-	
-	function onClickAdd() {
-		formUpd.action = 'hrDepartmentMemberUpdate.do';
-		formUpd.method = 'post';
-		formUpd.submit();
-	}
-	function onClickRemove() {
-		formUpd.action = 'hrDepartmentMemberUpdate.do';
-		formUpd.method = 'post';
-		formUpd.submit();
-	}
-</script>
+<script type="text/javascript" src="/resources/js/hr_department_member.js"></script>
 </html>
