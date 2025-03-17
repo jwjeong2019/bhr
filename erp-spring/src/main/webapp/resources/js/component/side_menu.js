@@ -9,16 +9,6 @@ const menuList = [
                 url: '/criterionDepartment.do',
                 nm: '부서 기준 관리'
             },
-            {
-                key: 2,
-                url: '/criterionAttendance.do',
-                nm: '근태 기준 관리'
-            },
-            {
-                key: 3,
-                url: '/criterionPayroll.do',
-                nm: '급여 기준 관리'
-            },
         ]
     },
     {
@@ -38,41 +28,6 @@ const menuList = [
                 key: 6,
                 url: '/hrEmployee.do',
                 nm: '사원 관리'
-            },
-        ]
-    },
-    {
-        menuNm: '근태관리',
-        subMenus: [
-            {
-                key: 7,
-                url: '/attendanceSituation.do',
-                nm: '근태 현황'
-            },
-            {
-                key: 8,
-                url: '/attendanceReceive.do',
-                nm: '근태 신청 관리'
-            },
-            {
-                key: 9,
-                url: '/attendanceAnnualleaveSituation.do',
-                nm: '연차 현황'
-            },
-        ]
-    },
-    {
-        menuNm: '급여관리',
-        subMenus: [
-            {
-                key: 10,
-                url: '/payrollCalculatedRetrieval.do',
-                nm: '급여 산정 조회'
-            },
-            {
-                key: 11,
-                url: '/payrollPayment.do',
-                nm: '급여 지급 관리'
             },
         ]
     },
