@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERP 부서 기준 관리</title>
+    <title>HR 부서 기준 관리</title>
     <link rel="stylesheet" href="<%=path%>/resources/css/common/layout.css">
     <link rel="stylesheet" href="<%=path%>/resources/css/common/font.css">
     <link rel="stylesheet" href="<%=path%>/resources/css/common/component.css">

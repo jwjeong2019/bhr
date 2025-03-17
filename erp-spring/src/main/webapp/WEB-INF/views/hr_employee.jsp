@@ -38,7 +38,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERP 사원 관리</title>
+    <title>HR 사원 관리</title>
     <jsp:include page="/resources/jsp/linkes.jsp" />
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Gowun+Dodum&family=Hi+Melody&display=swap');
