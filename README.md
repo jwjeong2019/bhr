@@ -1,4 +1,4 @@
-# 📁HR based on Spring Framework
+# BHR(Basic-HR)
 ![image](https://img.shields.io/badge/java-v.11-blue.svg)
 ![image](https://img.shields.io/badge/spring-v.5.2.25.RELEASE-blue.svg)
 ![image](https://img.shields.io/badge/jsp-grey.svg)
@@ -33,7 +33,7 @@ Spring 기반의 jsp로 HR을 구현한 프로젝트입니다.
 
 ---
 ### 기준 관리
-ERP 시스템의 도메인에 대한 기준을 정하고 관리합니다.
+HR 도메인에 대한 기준을 정하고 관리합니다.
 
 - 부서 기준 관리
   - 부서에 대한 기준을 정하고, 이를 관리합니다.
