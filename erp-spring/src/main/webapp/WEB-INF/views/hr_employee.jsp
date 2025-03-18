@@ -148,12 +148,15 @@
         </div>
     </dialog>
     <form id="form-reg">
+    	<input name="${_csrf.parameterName }" value="${_csrf.token }" hidden />
     	<input id="reg-data" name="data" hidden>
     </form>
     <form id="form-mod">
+    	<input name="${_csrf.parameterName }" value="${_csrf.token }" hidden />
     	<input id="mod-data" name="data" hidden>
     </form>
     <form id="form-del">
+    	<input name="${_csrf.parameterName }" value="${_csrf.token }" hidden />
     	<input id="del-emp-id" name="empId" hidden>
     </form>
 </body>
