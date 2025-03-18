@@ -25,7 +25,7 @@
 	        <div class="b-solid b-radius pd-30 w-20vw h-70vh bg-primary">
 	            <div class="container f-col center">
 	                <img class="b-radius w-20p h-20p" src="https://t3.ftcdn.net/jpg/02/27/25/12/360_F_227251234_0JnUIGzzksEC1az3PHJ8Folr6yoOJQ7A.jpg">
-	                <span class="f-30">Welcom to HR</span>
+	                <span class="f-30">Welcom to BHR</span>
 	            </div>
 	            <div>
 	                <p class="f-20">아이디 *</p>
