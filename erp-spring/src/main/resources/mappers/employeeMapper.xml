@@ -105,6 +105,10 @@
   	where id = #{id}
   </update>
   
+  <update id="updateEmployeeSetDepIdNull" parameterType="employeeDto">
+  	update employee set dep_id = null where dep_id = #{depId}
+  </update>
+  
   <delete id="deleteEmployee" parameterType="employeeDto">
   	delete from employee where id = #{id}
   </delete>

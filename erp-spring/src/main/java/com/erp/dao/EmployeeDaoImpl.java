@@ -41,11 +41,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update(NAMESPACE + ".updateEmployee", dto);
 	}
+	
+	@Override
+	public int updateSetDepIdNull(EmployeeDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NAMESPACE + ".updateEmployeeSetDepIdNull", dto);
+	}
 
 	@Override
 	public int delete(EmployeeDto dto) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.delete(NAMESPACE + ".deleteEmployee", dto);
 	}
-	
+
 }

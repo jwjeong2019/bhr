@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.erp.dao.CriterionDao;
 import com.erp.dao.DepartmentDao;
+import com.erp.dao.EmployeeDao;
 import com.erp.dto.CriterionDto;
 import com.erp.dto.DepartmentDto;
+import com.erp.dto.EmployeeDto;
 import com.erp.dto.HRDepDelDto;
 import com.erp.dto.HRDepDto;
 import com.erp.dto.HRDepInsDto;
@@ -24,6 +26,8 @@ public class HRDepServiceImpl implements HRDepService {
 	private DepartmentDao departmentDao;
 	@Inject
 	private CriterionDao criterionDao;
+	@Inject
+	private EmployeeDao employeeDao;
 
 	@Override
 	public HRDepDto hrDepartment(HRDepDto dtoReq) throws Exception {
@@ -69,11 +73,15 @@ public class HRDepServiceImpl implements HRDepService {
 		// TODO Auto-generated method stub
 		HRDepDelDto dtoRes = new HRDepDelDto();
 		
+		EmployeeDto dtoEmpUpd = new EmployeeDto();
+		dtoEmpUpd.setDepId(dtoReq.getReqId());
+		int countEmp = employeeDao.updateSetDepIdNull(dtoEmpUpd);
+		
 		DepartmentDto dtoDel = new DepartmentDto();
 		dtoDel.setId(dtoReq.getReqId());
-		int count = departmentDao.delete(dtoDel);
+		int countDep = departmentDao.delete(dtoDel);
 		
-		if (count > 0) dtoRes.setSuccess(true);
+		if (countEmp > 0 && countDep > 0) dtoRes.setSuccess(true);
 		dtoRes.setResRedirectUrl("redirect:/hrDepartment.do");
 		return dtoRes;
 	}
