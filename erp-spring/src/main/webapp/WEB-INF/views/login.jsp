@@ -38,7 +38,7 @@
 	            </div>
 	            <div>
 	                <p>계정 생성은 관리자에게 문의하시기 바랍니다.</p>
-	                <p>이메일 문의: admin@erp.kr</p>
+	                <p>이메일 문의: admin@bhr.kr</p>
 	            </div>
 	        </div>
 	    </div>
