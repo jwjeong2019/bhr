@@ -37,10 +37,6 @@ HR 도메인에 대한 기준을 정하고 관리합니다.
 
 - 부서 기준 관리
   - 부서에 대한 기준을 정하고, 이를 관리합니다.
-- 근태 기준 관리
-  - 근태에 대한 기준을 정하고, 이를 관리합니다.
-- 급여 기준 관리
-  - 급여에 대한 기준을 정하고, 이를 관리합니다.
 
 ---
 ### 인사 관리
@@ -97,51 +93,6 @@ HR 도메인에 대한 기준을 정하고 관리합니다.
 ![alt text](assets/cri-dep-6.png)
 등록 현황에서 부서 기준이 삭제되었습니다.
 
-#### -  근태 기준 관리
-![alt text](assets/cri-att-1.png)
-근태 기준 관리 기본 화면입니다.  
-등록할 근태 기준을 입력 후 기준 등록 버튼을 클릭하여 추가할 수 있습니다.
-
-![alt text](assets/cri-att-2.png)
-근태 기준이 추가된 결과입니다.
-
-![alt text](assets/cri-att-3.png)
-등록 현황에서 근태 기준을 클릭하면 근태 정보를 수정할 수 있습니다.  
-상태와 명칭을 수정하고 수정 버튼을 누르면 수정 완료됩니다.  
-삭제 버튼을 누르면 해당 근태 기준을 삭제합니다.
-
-![alt text](assets/cri-att-4.png)
-방금 추가한 근태 기준을 삭제해보겠습니다.  
-근태 기준을 클릭합니다.
-
-![alt text](assets/cri-att-5.png)
-삭제 버튼을 누릅니다.
-
-![alt text](assets/cri-att-6.png)
-등록 현황에서 근태 기준이 삭제되었습니다.
-
-#### -  급여 기준 관리
-![alt text](assets/cri-pay-1.png)
-급여 기준 관리 기본 화면입니다.  
-등록할 급여 기준을 입력 후 기준 등록 버튼을 클릭하여 추가할 수 있습니다.
-
-![alt text](assets/cri-pay-2.png)
-급여 기준이 추가된 결과입니다.
-
-![alt text](assets/cri-pay-3.png)
-등록 현황에서 급여 기준을 클릭하면 급여 정보를 수정할 수 있습니다.  
-상태와 명칭을 수정하고 수정 버튼을 누르면 수정 완료됩니다.  
-삭제 버튼을 누르면 해당 급여 기준을 삭제합니다.
-
-![alt text](assets/cri-pay-4.png)
-방금 추가한 급여 기준을 삭제해보겠습니다.  
-급여 기준을 클릭합니다.
-
-![alt text](assets/cri-pay-5.png)
-삭제 버튼을 누릅니다.
-
-![alt text](assets/cri-pay-6.png)
-등록 현황에서 급여 기준이 삭제되었습니다.
 
 </details>
 
@@ -221,43 +172,3 @@ HR 도메인에 대한 기준을 정하고 관리합니다.
 |-|-|-|
 |v0.1.0|Spring Security 적용 및 로그인 기능 수정|2025-01-30|
 |v0.1.1|ERP 키워드 및 로고를 HR로 수정|2025-02-26|
-
-## 📌특이사항
-
-- 개인 사정으로 구현 범위 축소와 미흡한 기능이 있는 점 양해바랍니다.🙏
-- 미구현
-  <details>
-  <summary>펼쳐보기</summary>
-
-  ```
-  - controller
-  AttendanceAnnController.java
-  AttendanceAppController.java
-  AttendanceDetController.java
-  AttendanceRecController.java
-  AttendanceSitController.java
-  PayrollCalRetController.java
-  PayrollPayController.java
-  PayrollSpeController.java
-  MainController.java
-  - js
-  attendance_annualleave_situation.js
-  attendance_apply.js
-  attendance_details.js
-  attendance_receive.js
-  attendance_situation.js
-  payroll_calculated_retrieval.js
-  payroll_payment.js
-  payroll_specification.js
-  - jsp
-  attendance_annualleave_situation.jsp
-  attendance_apply.jsp
-  attendance_details.jsp
-  attendance_receive.jsp
-  attendance_situation.jsp
-  payroll_calculated_retrieval.jsp
-  payroll_payment.jsp
-  payroll_specification.jsp
-  main.jsp
-  ```
-  </details>
