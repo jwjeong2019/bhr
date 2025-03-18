@@ -1,6 +1,6 @@
 const infoForm = document.getElementById('info-form');
 const dialog = document.querySelector('dialog');
-window.onClickItem = function (item) {
+function onClickItem(item) {
 	console.log(item);
 	dialog.showModal();
 	
@@ -16,15 +16,15 @@ window.onClickItem = function (item) {
 	iic.disabled = true;
 	iit.disabled = true;
 }
-window.onClickClose = function () {
+function onClickClose() {
 	dialog.close();
 }
-window.onClickUpdate = function () {
+function onClickUpdate() {
 	infoForm.action = 'criterionDepartmentUpdate.do';
 	infoForm.method = 'post';
 	infoForm.submit();
 }
-window.onClickDelete = function () {
+function onClickDelete() {
 	infoForm.action = 'criterionDepartmentDelete.do';
 	infoForm.method = 'post';
 	infoForm.submit();
